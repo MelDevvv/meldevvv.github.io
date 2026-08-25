@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dune // MEL</title>
+
+    <meta
+        name="description"
+        content="Dune — Prototype 02 by MEL."
+    >
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #050B14;
+            color: #E5F7FF;
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* ============================= */
+        /* BACKGROUND                    */
+        /* ============================= */
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+
+            background:
+                linear-gradient(
+                    rgba(0, 212, 255, 0.025) 1px,
+                    transparent 1px
+                ),
+                linear-gradient(
+                    90deg,
+                    rgba(0, 212, 255, 0.025) 1px,
+                    transparent 1px
+                );
+
+            background-size: 50px 50px;
+
+            z-index: -2;
+        }
+
+        body::after {
+            content: "";
+
+            position: fixed;
+
+            width: 650px;
+            height: 650px;
+
+            top: -300px;
+            right: -250px;
+
+            background: rgba(0, 212, 255, 0.08);
+
+            filter: blur(130px);
+
+            border-radius: 50%;
+
+            pointer-events: none;
+
+            z-index: -1;
+        }
+
+        /* ============================= */
+        /* NAVIGATION                    */
+        /* ============================= */
+
+        nav {
+            position: fixed;
+
+            top: 0;
+            left: 0;
+
+            width: 100%;
+
+            padding: 20px 6%;
+
+            display: flex;
+
+            justify-content: space-between;
+            align-items: center;
+
+            background: rgba(5, 11, 20, 0.85);
+
+            backdrop-filter: blur(15px);
+
+            border-bottom:
+                1px solid rgba(0, 212, 255, 0.12);
+
+            z-index: 1000;
+        }
+
+        .logo {
+            color: #00D4FF;
+
+            font-size: 20px;
+
+            font-weight: 800;
+
+            letter-spacing: 5px;
+        }
+
+        nav a {
+            color: #94A3B8;
+
+            font-size: 11px;
+
+            letter-spacing: 2px;
+
+            transition: 0.25s;
+        }
+
+        nav a:hover {
+            color: #00D4FF;
+        }
+
+        /* ============================= */
+        /* HERO                          */
+        /* ============================= */
+
+        .hero {
+            min-height: 80vh;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            text-align: center;
+
+            padding: 140px 20px 80px;
+
+            border-bottom:
+                1px solid rgba(0, 212, 255, 0.12);
+        }
+
+        .hero-content {
+            max-width: 950px;
+        }
+
+        .prototype {
+            color: #00D4FF;
+
+            font-size: 11px;
+
+            letter-spacing: 5px;
+
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: clamp(65px, 12vw, 125px);
+
+            line-height: 1;
+
+            letter-spacing: 14px;
+
+            color: #FFFFFF;
+
+            margin-bottom: 20px;
+        }
+
+        .hero h2 {
+            color: #7DD3FC;
+
+            font-size: 16px;
+
+            letter-spacing: 4px;
+
+            font-weight: 500;
+        }
+
+        .hero-description {
+            max-width: 700px;
+
+            margin: 30px auto;
+
+            color: #94A3B8;
+
+            font-size: 16px;
+
+            line-height: 1.9;
+        }
+
+        /* ============================= */
+        /* BUTTONS                       */
+        /* ============================= */
+
+        .buttons {
+            display: flex;
+
+            justify-content: center;
+
+            gap: 15px;
+
+            flex-wrap: wrap;
+
+            margin-top: 35px;
+        }
+
+        .button {
+            display: inline-block;
+
+            padding: 14px 28px;
+
+            border:
+                1px solid #00D4FF;
+
+            color: #00D4FF;
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+            letter-spacing: 2px;
+
+            transition: 0.3s;
+        }
+
+        .button:hover {
+            background: #00D4FF;
+
+            color: #050B14;
+
+            box-shadow:
+                0 0 30px rgba(0, 212, 255, 0.3);
+
+            transform: translateY(-3px);
+        }
+
+        .button.primary {
+            background: #00D4FF;
+
+            color: #050B14;
+        }
+
+        /* ============================= */
+        /* CONTENT                       */
+        /* ============================= */
+
+        section {
+            max-width: 1000px;
+
+            margin: auto;
+
+            padding: 100px 6%;
+        }
+
+        .label {
+            color: #00D4FF;
+
+            font-size: 10px;
+
+            letter-spacing: 5px;
+
+            margin-bottom: 12px;
+        }
+
+        h3 {
+            font-size: 34px;
+
+            color: #FFFFFF;
+
+            letter-spacing: 2px;
+
+            margin-bottom: 25px;
+        }
+
+        .text {
+            color: #CBD5E1;
+
+            font-size: 15px;
+
+            line-height: 1.9;
+
+            max-width: 800px;
+        }
+
+        /* ============================= */
+        /* FEATURE GRID                  */
+        /* ============================= */
+
+        .features {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 15px;
+
+            margin-top: 40px;
+        }
+
+        .feature {
+            padding: 25px;
+
+            background: #071018;
+
+            border:
+                1px solid #183442;
+
+            transition: 0.3s;
+        }
+
+        .feature:hover {
+            border-color: #00D4FF;
+
+            transform: translateY(-4px);
+        }
+
+        .feature strong {
+            display: block;
+
+            color: #00D4FF;
+
+            font-size: 12px;
+
+            letter-spacing: 2px;
+
+            margin-bottom: 10px;
+        }
+
+        .feature span {
+            color: #94A3B8;
+
+            font-size: 13px;
+        }
+
+        /* ============================= */
+        /* DEVELOPMENT INFO              */
+        /* ============================= */
+
+        .info-box {
+            padding: 30px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #0B1728,
+                    #071018
+                );
+
+            border:
+                1px solid #183442;
+        }
+
+        .info-row {
+            display: flex;
+
+            justify-content: space-between;
+
+            gap: 30px;
+
+            padding: 15px 0;
+
+            border-bottom:
+                1px solid rgba(0, 212, 255, 0.08);
+        }
+
+        .info-row:last-child {
+            border-bottom: none;
+        }
+
+        .info-row span:first-child {
+            color: #64748B;
+
+            font-size: 11px;
+
+            letter-spacing: 2px;
+        }
+
+        .info-row span:last-child {
+            color: #D1D5DB;
+
+            font-size: 13px;
+
+            text-align: right;
+        }
+
+        /* ============================= */
+        /* FOOTER                        */
+        /* ============================= */
+
+        footer {
+            text-align: center;
+
+            padding: 70px 20px;
+
+            border-top:
+                1px solid rgba(0, 212, 255, 0.12);
+        }
+
+        footer p:first-child {
+            color: #00D4FF;
+
+            font-size: 16px;
+
+            letter-spacing: 4px;
+        }
+
+        footer p:last-child {
+            color: #64748B;
+
+            font-size: 11px;
+
+            letter-spacing: 2px;
+
+            margin-top: 10px;
+        }
+
+        /* ============================= */
+        /* MOBILE                        */
+        /* ============================= */
+
+        @media (max-width: 700px) {
+
+            .hero {
+                min-height: 75vh;
+            }
+
+            .hero h1 {
+                letter-spacing: 7px;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+            .info-row {
+                flex-direction: column;
+
+                gap: 5px;
+            }
+
+            .info-row span:last-child {
+                text-align: left;
+            }
+
+            section {
+                padding: 75px 6%;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- ============================= -->
+    <!-- NAVIGATION                    -->
+    <!-- ============================= -->
+
+    <nav>
+
+        <a href="index.html" class="logo">
+            MEL
+        </a>
+
+        <a href="index.html">
+            ← BACK TO PORTFOLIO
+        </a>
+
+    </nav>
+
+
+    <!-- ============================= -->
+    <!-- HERO                          -->
+    <!-- ============================= -->
+
+    <header class="hero">
+
+        <div class="hero-content">
+
+            <div class="prototype">
+                PROTOTYPE 02 // GAME PROJECT
+            </div>
+
+            <h1>
+                DUNE
+            </h1>
+
+            <h2>
+                UNITY &nbsp;•&nbsp; C#
+            </h2>
+
+            <p class="hero-description">
+
+                A desert-inspired gameplay prototype focused on
+                exploration, player interaction, gameplay mechanics
+                and creating a playable environment.
+
+            </p>
+
+            <div class="buttons">
+
+                <a href="#about" class="button primary">
+                    ABOUT THE GAME
+                </a>
+
+                <a href="index.html" class="button">
+                    ← PORTFOLIO
+                </a>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- ============================= -->
+    <!-- ABOUT THE GAME                -->
+    <!-- ============================= -->
+
+    <section id="about">
+
+        <div class="label">
+            01 // OVERVIEW
+        </div>
+
+        <h3>
+            ABOUT THE GAME
+        </h3>
+
+        <p class="text">
+
+            Dune is a gameplay prototype developed in Unity
+            and C#.
+
+            <br><br>
+
+            The project explores a desert environment through
+            player movement, exploration and interactive
+            gameplay mechanics.
+
+            <br><br>
+
+            The prototype is focused on experimenting with
+            gameplay ideas and developing a complete playable
+            experience from concept to implementation.
+
+        </p>
+
+    </section>
+
+
+    <!-- ============================= -->
+    <!-- FEATURES                      -->
+    <!-- ============================= -->
+
+    <section>
+
+        <div class="label">
+            02 // FEATURES
+        </div>
+
+        <h3>
+            CORE SYSTEMS
+        </h3>
+
+        <div class="features">
+
+            <div class="feature">
+
+                <strong>
+                    EXPLORATION
+                </strong>
+
+                <span>
+                    Explore a desert-inspired
+                    playable environment.
+                </span>
+
+            </div>
+
+
+            <div class="feature">
+
+                <strong>
+                    INTERACTION
+                </strong>
+
+                <span>
+                    Player interactions and
+                    gameplay mechanics.
+                </span>
+
+            </div>
+
+
+            <div class="feature">
+
+                <strong>
+                    LEVEL DESIGN
+                </strong>
+
+                <span>
+                    An environment designed
+                    around the gameplay experience.
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ============================= -->
+    <!-- DEVELOPMENT                   -->
+    <!-- ============================= -->
+
+    <section>
+
+        <div class="label">
+            03 // DEVELOPMENT
+        </div>
+
+        <h3>
+            PROJECT INFO
+        </h3>
+
+        <div class="info-box">
+
+            <div class="info-row">
+
+                <span>
+                    ENGINE
+                </span>
+
+                <span>
+                    Unity
+                </span>
+
+            </div>
+
+
+            <div class="info-row">
+
+                <span>
+                    LANGUAGE
+                </span>
+
+                <span>
+                    C#
+                </span>
+
+            </div>
+
+
+            <div class="info-row">
+
+                <span>
+                    TYPE
+                </span>
+
+                <span>
+                    Gameplay Prototype
+                </span>
+
+            </div>
+
+
+            <div class="info-row">
+
+                <span>
+                    STATUS
+                </span>
+
+                <span>
+                    Prototype
+                </span>
+
+            </div>
+
+
+            <div class="info-row">
+
+                <span>
+                    DEVELOPER
+                </span>
+
+                <span>
+                    MEL
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ============================= -->
+    <!-- DOWNLOAD                      -->
+    <!-- ============================= -->
+
+    <section>
+
+        <div class="label">
+            04 // PLAY
+        </div>
+
+        <h3>
+            GET THE GAME
+        </h3>
+
+        <p class="text">
+
+            The Windows build will be available here.
+
+            <br><br>
+
+            Download the ZIP file, extract it and launch
+            the executable to play.
+
+        </p>
+
+        <div class="buttons">
+
+            <!-- WE WILL CONNECT THIS AFTER UPLOADING THE GAME -->
+
+            <a href="#" class="button primary">
+                DOWNLOAD DUNE
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- ============================= -->
+    <!-- FOOTER                        -->
+    <!-- ============================= -->
+
+    <footer>
+
+        <p>
+            DESIGN. PROGRAM. ITERATE.
+        </p>
+
+        <p>
+            MEL // GAME PROGRAMMER &amp; GAME DESIGNER
+        </p>
+
+        <br>
+
+        <a href="index.html" class="button">
+            ← BACK TO PORTFOLIO
+        </a>
+
+    </footer>
+
+
+</body>
+
+</html>
