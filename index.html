@@ -1,1 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <title>MEL // Game Programmer & Designer</title>
+
+    <meta name="description" content="MEL — Game Programmer and Game Designer. Creating gameplay systems, interactive experiences and game prototypes.">
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #050B14;
+            color: #E5F7FF;
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* ============================= */
+        /* BACKGROUND                    */
+        /* ============================= */
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            background:
+                linear-gradient(rgba(0, 212, 255, 0.025) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 212, 255, 0.025) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -2;
+        }
+
+        body::after {
+            content: "";
+            position: fixed;
+            width: 600px;
+            height: 600px;
+            top: -300px;
+            right: -200px;
+            background: rgba(0, 212, 255, 0.08);
+            filter: blur(120px);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* ============================= */
+        /* NAVIGATION                    */
+        /* ============================= */
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 6%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(5, 11, 20, 0.82);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(0, 212, 255, 0.12);
+            z-index: 1000;
+        }
+
+        .logo {
+            color: #00D4FF;
+            font-size: 20px;
+            font-weight: 800;
+            letter-spacing: 5px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            color: #94A3B8;
+            font-size: 12px;
+            letter-spacing: 2px;
+            transition: 0.25s;
+        }
+
+        nav a:hover {
+            color: #00D4FF;
+        }
+
+        /* ============================= */
+        /* HERO                          */
+        /* ============================= */
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 120px 20px 80px;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 1000px;
+        }
+
+        .eyebrow {
+            color: #00D4FF;
+            font-size: 12px;
+            letter-spacing: 6px;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: clamp(70px, 13vw, 150px);
+            line-height: 0.9;
+            letter-spacing: 15px;
+            color: #FFFFFF;
+            text-shadow: 0 0 40px rgba(0, 212, 255, 0.18);
+        }
+
+        .hero h2 {
+            margin-top: 25px;
+            color: #7DD3FC;
+            font-size: clamp(16px, 2vw, 24px);
+            letter-spacing: 5px;
+            font-weight: 500;
+        }
+
+        .hero p {
+            max-width: 700px;
+            margin: 30px auto;
+            color: #94A3B8;
+            font-size: 16px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 35px;
+            flex-wrap: wrap;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 14px 28px;
+            border: 1px solid #00D4FF;
+            color: #00D4FF;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            transition: 0.3s;
+        }
+
+        .button:hover {
+            background: #00D4FF;
+            color: #050B14;
+            box-shadow: 0 0 30px rgba(0, 212, 255, 0.3);
+            transform: translateY(-3px);
+        }
+
+        .button.primary {
+            background: #00D4FF;
+            color: #050B14;
+        }
+
+        /* ============================= */
+        /* SECTIONS                      */
+        /* ============================= */
+
+        section {
+            padding: 110px 6%;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .section-label {
+            color: #00D4FF;
+            font-size: 11px;
+            letter-spacing: 5px;
+            margin-bottom: 10px;
+        }
+
+        .section-title {
+            font-size: clamp(32px, 5vw, 55px);
+            color: #FFFFFF;
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+        }
+
+        .section-description {
+            max-width: 700px;
+            color: #94A3B8;
+            margin-bottom: 55px;
+        }
+
+        /* ============================= */
+        /* PROJECTS                      */
+        /* ============================= */
+
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+
+        .project {
+            position: relative;
+            min-height: 420px;
+            padding: 35px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            background: linear-gradient(
+                145deg,
+                #0B1728,
+                #071018
+            );
+            border: 1px solid #183442;
+            overflow: hidden;
+            transition: 0.35s;
+        }
+
+        .project::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                180deg,
+                transparent 30%,
+                rgba(0, 212, 255, 0.08)
+            );
+            opacity: 0;
+            transition: 0.35s;
+        }
+
+        .project:hover {
+            border-color: #00D4FF;
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+        }
+
+        .project:hover::before {
+            opacity: 1;
+        }
+
+        .project-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .project-number {
+            color: #00D4FF;
+            font-size: 11px;
+            letter-spacing: 4px;
+            margin-bottom: 12px;
+        }
+
+        .project h3 {
+            color: #FFFFFF;
+            font-size: 32px;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+        }
+
+        .project-tech {
+            color: #7DD3FC;
+            font-size: 12px;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+        }
+
+        .project p {
+            color: #94A3B8;
+            font-size: 14px;
+            margin-bottom: 25px;
+        }
+
+        /* ============================= */
+        /* ABOUT                         */
+        /* ============================= */
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 60px;
+            align-items: start;
+        }
+
+        .about-text p {
+            color: #CBD5E1;
+            margin-bottom: 20px;
+            font-size: 15px;
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .skill {
+            padding: 9px 14px;
+            border: 1px solid #183442;
+            color: #7DD3FC;
+            font-size: 11px;
+            letter-spacing: 1px;
+            background: #071018;
+        }
+
+        /* ============================= */
+        /* FOOTER                        */
+        /* ============================= */
+
+        footer {
+            padding: 70px 20px;
+            text-align: center;
+            border-top: 1px solid rgba(0, 212, 255, 0.12);
+        }
+
+        footer .footer-title {
+            color: #00D4FF;
+            font-size: 18px;
+            letter-spacing: 4px;
+            margin-bottom: 12px;
+        }
+
+        footer p {
+            color: #64748B;
+            font-size: 12px;
+            letter-spacing: 2px;
+        }
+
+        /* ============================= */
+        /* MOBILE                        */
+        /* ============================= */
+
+        @media (max-width: 800px) {
+
+            nav {
+                padding: 18px 5%;
+            }
+
+            nav ul {
+                gap: 15px;
+            }
+
+            nav a {
+                font-size: 10px;
+            }
+
+            .hero h1 {
+                letter-spacing: 8px;
+            }
+
+            .projects {
+                grid-template-columns: 1fr;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            section {
+                padding: 80px 6%;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- ============================= -->
+    <!-- NAVIGATION                    -->
+    <!-- ============================= -->
+
+    <nav>
+
+        <a href="#" class="logo">MEL</a>
+
+        <ul>
+            <li><a href="#games">GAMES</a></li>
+            <li><a href="#about">ABOUT</a></li>
+            <li><a href="#skills">SKILLS</a></li>
+        </ul>
+
+    </nav>
+
+
+    <!-- ============================= -->
+    <!-- HERO                          -->
+    <!-- ============================= -->
+
+    <header class="hero">
+
+        <div class="hero-content">
+
+            <div class="eyebrow">
+                GAME DEVELOPER // PORTFOLIO
+            </div>
+
+            <h1>MEL</h1>
+
+            <h2>
+                GAME PROGRAMMER &nbsp;•&nbsp; GAME DESIGNER
+            </h2>
+
+            <p>
+                I build interactive experiences through gameplay
+                programming, game design and rapid prototyping.
+            </p>
+
+            <div class="hero-buttons">
+
+                <a href="#games" class="button primary">
+                    VIEW MY GAMES
+                </a>
+
+                <a href="#about" class="button">
+                    ABOUT ME
+                </a>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- ============================= -->
+    <!-- GAMES                         -->
+    <!-- ============================= -->
+
+    <section id="games">
+
+        <div class="section-label">
+            01 // PROJECTS
+        </div>
+
+        <h2 class="section-title">
+            MY GAMES
+        </h2>
+
+        <p class="section-description">
+            A collection of my current game development projects,
+            prototypes and experiments.
+        </p>
+
+
+        <div class="projects">
+
+
+            <!-- GLITCH RUNNER -->
+
+            <article class="project">
+
+                <div class="project-content">
+
+                    <div class="project-number">
+                        PROTOTYPE 01
+                    </div>
+
+                    <h3>
+                        GLITCH RUNNER
+                    </h3>
+
+                    <div class="project-tech">
+                        UNITY &nbsp;•&nbsp; C#
+                    </div>
+
+                    <p>
+                        A gameplay prototype focused on responsive
+                        player movement, interactive mechanics and
+                        creating an engaging gameplay experience.
+                    </p>
+
+                    <a href="glitch-runner.html" class="button">
+                        VIEW PROJECT →
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <!-- DUNE -->
+
+            <article class="project">
+
+                <div class="project-content">
+
+                    <div class="project-number">
+                        PROTOTYPE 02
+                    </div>
+
+                    <h3>
+                        DUNE
+                    </h3>
+
+                    <div class="project-tech">
+                        UNITY &nbsp;•&nbsp; C#
+                    </div>
+
+                    <p>
+                        A desert-inspired gameplay prototype exploring
+                        player interaction, exploration, mechanics
+                        and level design.
+                    </p>
+
+                    <a href="dune.html" class="button">
+                        VIEW PROJECT →
+                    </a>
+
+                </div>
+
+            </article>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- ============================= -->
+    <!-- ABOUT                         -->
+    <!-- ============================= -->
+
+    <section id="about">
+
+        <div class="section-label">
+            02 // ABOUT
+        </div>
+
+        <h2 class="section-title">
+            ABOUT ME
+        </h2>
+
+        <div class="about-grid">
+
+            <div class="about-text">
+
+                <p>
+                    I'm a Game Design &amp; Programming student
+                    developing my skills across both the technical
+                    and creative sides of game development.
+                </p>
+
+                <p>
+                    My main focus is gameplay programming and game
+                    design. I enjoy taking an idea and turning it
+                    into something playable — designing mechanics,
+                    building systems and creating responsive
+                    interactions.
+                </p>
+
+                <p>
+                    I'm also interested in real-time graphics and
+                    rendering, using C++ and OpenGL to understand
+                    the technology behind modern games.
+                </p>
+
+            </div>
+
+            <div>
+
+                <div class="section-label">
+                    TECHNOLOGY
+                </div>
+
+                <div class="skills">
+
+                    <span class="skill">C++</span>
+                    <span class="skill">C#</span>
+                    <span class="skill">UNITY</span>
+                    <span class="skill">OPENGL</span>
+                    <span class="skill">PYTHON</span>
+                    <span class="skill">BLENDER</span>
+                    <span class="skill">GIT</span>
+                    <span class="skill">UNREAL ENGINE</span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ============================= -->
+    <!-- SKILLS                        -->
+    <!-- ============================= -->
+
+    <section id="skills">
+
+        <div class="section-label">
+            03 // FOCUS
+        </div>
+
+        <h2 class="section-title">
+            WHAT I DO
+        </h2>
+
+        <p class="section-description">
+            Combining programming and design to build complete
+            playable experiences.
+        </p>
+
+        <div class="skills">
+
+            <span class="skill">GAMEPLAY PROGRAMMING</span>
+            <span class="skill">GAME DESIGN</span>
+            <span class="skill">GAMEPLAY SYSTEMS</span>
+            <span class="skill">PLAYER CONTROLLERS</span>
+            <span class="skill">LEVEL DESIGN</span>
+            <span class="skill">PROTOTYPING</span>
+            <span class="skill">REAL-TIME GRAPHICS</span>
+            <span class="skill">UNITY DEVELOPMENT</span>
+
+        </div>
+
+    </section>
+
+
+    <!-- ============================= -->
+    <!-- FOOTER                        -->
+    <!-- ============================= -->
+
+    <footer>
+
+        <div class="footer-title">
+            DESIGN. PROGRAM. ITERATE.
+        </div>
+
+        <p>
+            MEL // GAME PROGRAMMER &amp; GAME DESIGNER
+        </p>
+
+    </footer>
+
+
+</body>
+</html>
