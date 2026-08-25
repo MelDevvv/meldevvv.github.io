@@ -4,11 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>MEL // Game Programmer & Designer</title>
+    <title>MEL — Programmer | Portfolio</title>
 
-    <meta name="description" content="MEL — Game Programmer and Game Designer. Creating gameplay systems, interactive experiences, game prototypes and graphics programming projects.">
+    <meta
+        name="description"
+        content="MEL — Programmer and Games Design & Programming student specialising in gameplay systems, graphics programming, interactive prototypes and technical development."
+    >
 
     <style>
+
+        /* =========================================================
+           RESET
+        ========================================================= */
 
         * {
             margin: 0;
@@ -21,8 +28,8 @@
         }
 
         body {
-            background: #050B14;
-            color: #E5F7FF;
+            background: #050608;
+            color: #f1f5f9;
             font-family: Arial, Helvetica, sans-serif;
             line-height: 1.6;
             overflow-x: hidden;
@@ -33,232 +40,626 @@
             text-decoration: none;
         }
 
-        /* ============================= */
-        /* BACKGROUND                    */
-        /* ============================= */
+        ::selection {
+            background: #ffffff;
+            color: #050608;
+        }
+
+
+        /* =========================================================
+           BACKGROUND
+        ========================================================= */
 
         body::before {
             content: "";
             position: fixed;
             inset: 0;
             pointer-events: none;
-            background:
-                linear-gradient(rgba(0, 212, 255, 0.025) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 212, 255, 0.025) 1px, transparent 1px);
-            background-size: 50px 50px;
-            z-index: -2;
+            z-index: -3;
+
+            background-image:
+                linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+
+            background-size: 60px 60px;
+
+            mask-image: linear-gradient(
+                to bottom,
+                black,
+                transparent 85%
+            );
         }
 
         body::after {
             content: "";
             position: fixed;
-            width: 600px;
-            height: 600px;
-            top: -300px;
-            right: -200px;
-            background: rgba(0, 212, 255, 0.08);
-            filter: blur(120px);
+
+            width: 800px;
+            height: 800px;
+
+            top: -400px;
+            right: -300px;
+
+            background: rgba(79, 70, 229, 0.12);
+
+            filter: blur(160px);
             border-radius: 50%;
+
             pointer-events: none;
-            z-index: -1;
+            z-index: -2;
         }
 
-        /* ============================= */
-        /* NAVIGATION                    */
-        /* ============================= */
+
+        /* =========================================================
+           GLOBAL
+        ========================================================= */
+
+        .container {
+            width: min(1280px, 88%);
+            margin: 0 auto;
+        }
+
+        .mono {
+            font-family:
+                "Courier New",
+                Courier,
+                monospace;
+        }
+
+        .accent {
+            color: #818cf8;
+        }
+
+
+        /* =========================================================
+           NAVIGATION
+        ========================================================= */
 
         nav {
             position: fixed;
+
             top: 0;
             left: 0;
+
             width: 100%;
-            padding: 20px 6%;
+
+            height: 76px;
+
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            background: rgba(5, 11, 20, 0.82);
-            backdrop-filter: blur(15px);
-            border-bottom: 1px solid rgba(0, 212, 255, 0.12);
+            justify-content: space-between;
+
+            padding: 0 6%;
+
+            background: rgba(5, 6, 8, 0.78);
+
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+
+            border-bottom: 1px solid rgba(255,255,255,0.07);
+
             z-index: 1000;
         }
 
         .logo {
-            color: #00D4FF;
-            font-size: 20px;
-            font-weight: 800;
-            letter-spacing: 5px;
+            font-size: 18px;
+            font-weight: 900;
+
+            letter-spacing: 6px;
+
+            color: #ffffff;
+        }
+
+        .logo span {
+            color: #818cf8;
         }
 
         nav ul {
             display: flex;
+            align-items: center;
+
             list-style: none;
-            gap: 30px;
+
+            gap: 34px;
         }
 
-        nav a {
-            color: #94A3B8;
-            font-size: 12px;
+        nav ul li a {
+            position: relative;
+
+            color: #8f96a3;
+
+            font-size: 11px;
+            font-weight: 700;
+
             letter-spacing: 2px;
-            transition: 0.25s;
+
+            transition: 0.25s ease;
         }
 
-        nav a:hover {
-            color: #00D4FF;
+        nav ul li a::after {
+            content: "";
+
+            position: absolute;
+
+            left: 0;
+            bottom: -7px;
+
+            width: 0;
+            height: 1px;
+
+            background: #818cf8;
+
+            transition: 0.25s ease;
         }
 
-        /* ============================= */
-        /* HERO                          */
-        /* ============================= */
+        nav ul li a:hover {
+            color: #ffffff;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+
+        /* =========================================================
+           HERO
+        ========================================================= */
 
         .hero {
             min-height: 100vh;
+
             display: flex;
-            justify-content: center;
             align-items: center;
-            text-align: center;
-            padding: 120px 20px 80px;
+
+            padding:
+                150px 0
+                100px;
+
             position: relative;
         }
 
-        .hero-content {
-            max-width: 1000px;
+        .hero-grid {
+            display: grid;
+
+            grid-template-columns:
+                minmax(0, 1.35fr)
+                minmax(280px, 0.65fr);
+
+            gap: 80px;
+
+            align-items: center;
         }
 
-        .eyebrow {
-            color: #00D4FF;
-            font-size: 12px;
-            letter-spacing: 6px;
-            margin-bottom: 20px;
+        .hero-left {
+            position: relative;
+        }
+
+        .hero-status {
+            display: inline-flex;
+
+            align-items: center;
+            gap: 10px;
+
+            padding: 8px 13px;
+
+            margin-bottom: 28px;
+
+            border: 1px solid rgba(255,255,255,0.1);
+
+            background: rgba(255,255,255,0.025);
+
+            color: #9ca3af;
+
+            font-size: 10px;
+            font-weight: 700;
+
+            letter-spacing: 2px;
+
+            text-transform: uppercase;
+        }
+
+        .status-dot {
+            width: 7px;
+            height: 7px;
+
+            border-radius: 50%;
+
+            background: #818cf8;
+
+            box-shadow:
+                0 0 12px rgba(129,140,248,0.8);
         }
 
         .hero h1 {
-            font-size: clamp(70px, 13vw, 150px);
-            line-height: 0.9;
-            letter-spacing: 15px;
-            color: #FFFFFF;
-            text-shadow: 0 0 40px rgba(0, 212, 255, 0.18);
+            font-size: clamp(80px, 13vw, 180px);
+
+            line-height: 0.78;
+
+            letter-spacing: -8px;
+
+            font-weight: 900;
+
+            color: #ffffff;
+
+            margin-left: -8px;
         }
 
-        .hero h2 {
-            margin-top: 25px;
-            color: #7DD3FC;
-            font-size: clamp(16px, 2vw, 24px);
-            letter-spacing: 5px;
+        .hero-title {
+            margin-top: 35px;
+
+            font-size: clamp(18px, 2vw, 25px);
+
             font-weight: 500;
+
+            letter-spacing: 4px;
+
+            text-transform: uppercase;
+
+            color: #c7cad1;
         }
 
-        .hero p {
-            max-width: 700px;
-            margin: 30px auto;
-            color: #94A3B8;
+        .hero-title span {
+            color: #818cf8;
+        }
+
+        .hero-description {
+            max-width: 720px;
+
+            margin-top: 28px;
+
+            color: #858b97;
+
             font-size: 16px;
+
+            line-height: 1.9;
         }
 
         .hero-buttons {
             display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 35px;
+
+            gap: 12px;
+
+            margin-top: 38px;
+
             flex-wrap: wrap;
         }
 
+
+        /* =========================================================
+           BUTTONS
+        ========================================================= */
+
         .button {
-            display: inline-block;
-            padding: 14px 28px;
-            border: 1px solid #00D4FF;
-            color: #00D4FF;
-            font-size: 12px;
-            font-weight: 700;
+            display: inline-flex;
+
+            align-items: center;
+            justify-content: center;
+
+            min-height: 48px;
+
+            padding: 0 22px;
+
+            border: 1px solid rgba(255,255,255,0.13);
+
+            background: rgba(255,255,255,0.025);
+
+            color: #d7dae0;
+
+            font-size: 10px;
+            font-weight: 800;
+
             letter-spacing: 2px;
-            transition: 0.3s;
+
+            transition:
+                transform 0.25s ease,
+                background 0.25s ease,
+                border-color 0.25s ease,
+                color 0.25s ease;
         }
 
         .button:hover {
-            background: #00D4FF;
-            color: #050B14;
-            box-shadow: 0 0 30px rgba(0, 212, 255, 0.3);
             transform: translateY(-3px);
+
+            border-color: #818cf8;
+
+            color: #ffffff;
+
+            background: rgba(129,140,248,0.1);
         }
 
         .button.primary {
-            background: #00D4FF;
-            color: #050B14;
+            background: #ffffff;
+
+            color: #050608;
+
+            border-color: #ffffff;
         }
 
-        /* ============================= */
-        /* SECTIONS                      */
-        /* ============================= */
+        .button.primary:hover {
+            background: #818cf8;
+
+            border-color: #818cf8;
+
+            color: #ffffff;
+
+            box-shadow:
+                0 15px 40px rgba(129,140,248,0.2);
+        }
+
+
+        /* =========================================================
+           HERO SIDE PANEL
+        ========================================================= */
+
+        .hero-panel {
+            border: 1px solid rgba(255,255,255,0.08);
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255,255,255,0.045),
+                    rgba(255,255,255,0.012)
+                );
+
+            padding: 28px;
+
+            position: relative;
+        }
+
+        .hero-panel::before {
+            content: "";
+
+            position: absolute;
+
+            top: -1px;
+            left: 30px;
+
+            width: 60px;
+            height: 2px;
+
+            background: #818cf8;
+        }
+
+        .panel-header {
+            display: flex;
+
+            justify-content: space-between;
+
+            padding-bottom: 22px;
+
+            margin-bottom: 22px;
+
+            border-bottom: 1px solid rgba(255,255,255,0.07);
+        }
+
+        .panel-header span {
+            color: #666d79;
+
+            font-size: 9px;
+
+            letter-spacing: 2px;
+        }
+
+        .panel-header strong {
+            color: #818cf8;
+
+            font-size: 9px;
+
+            letter-spacing: 2px;
+        }
+
+        .panel-item {
+            display: flex;
+
+            justify-content: space-between;
+
+            gap: 20px;
+
+            padding: 14px 0;
+
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .panel-item:last-child {
+            border-bottom: none;
+        }
+
+        .panel-item span:first-child {
+            color: #666d79;
+
+            font-size: 10px;
+
+            letter-spacing: 1px;
+
+            text-transform: uppercase;
+        }
+
+        .panel-item span:last-child {
+            color: #dce0e7;
+
+            font-size: 11px;
+
+            text-align: right;
+        }
+
+
+        /* =========================================================
+           SECTION
+        ========================================================= */
 
         section {
-            padding: 110px 6%;
-            max-width: 1200px;
-            margin: auto;
+            padding: 130px 0;
+
+            position: relative;
         }
 
-        .section-label {
-            color: #00D4FF;
-            font-size: 11px;
-            letter-spacing: 5px;
-            margin-bottom: 10px;
-        }
+        .section-top {
+            display: flex;
 
-        .section-title {
-            font-size: clamp(32px, 5vw, 55px);
-            color: #FFFFFF;
-            letter-spacing: 3px;
-            margin-bottom: 20px;
-        }
+            align-items: flex-end;
 
-        .section-description {
-            max-width: 700px;
-            color: #94A3B8;
+            justify-content: space-between;
+
+            gap: 40px;
+
             margin-bottom: 55px;
         }
 
-        /* ============================= */
-        /* PROJECTS                      */
-        /* ============================= */
+        .section-label {
+            color: #818cf8;
+
+            font-family:
+                "Courier New",
+                Courier,
+                monospace;
+
+            font-size: 10px;
+
+            font-weight: 700;
+
+            letter-spacing: 3px;
+
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            color: #ffffff;
+
+            font-size: clamp(38px, 5vw, 68px);
+
+            line-height: 0.95;
+
+            letter-spacing: -2px;
+
+            font-weight: 800;
+        }
+
+        .section-description {
+            max-width: 580px;
+
+            color: #747b87;
+
+            font-size: 14px;
+
+            line-height: 1.9;
+        }
+
+
+        /* =========================================================
+           PROJECTS
+        ========================================================= */
 
         .projects {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 25px;
+
+            grid-template-columns:
+                repeat(12, 1fr);
+
+            gap: 18px;
         }
 
         .project {
             position: relative;
-            min-height: 420px;
-            padding: 35px;
+
+            min-height: 500px;
+
+            padding: 34px;
+
             display: flex;
+
             flex-direction: column;
+
             justify-content: flex-end;
-            background: linear-gradient(
-                145deg,
-                #0B1728,
-                #071018
-            );
-            border: 1px solid #183442;
+
             overflow: hidden;
-            transition: 0.35s;
+
+            border:
+                1px solid rgba(255,255,255,0.08);
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #11141b,
+                    #080a0e
+                );
+
+            transition:
+                transform 0.35s ease,
+                border-color 0.35s ease,
+                box-shadow 0.35s ease;
+        }
+
+        .project:nth-child(1) {
+            grid-column: span 7;
+        }
+
+        .project:nth-child(2) {
+            grid-column: span 5;
+        }
+
+        .project:nth-child(3) {
+            grid-column: span 12;
+
+            min-height: 390px;
         }
 
         .project::before {
             content: "";
+
             position: absolute;
+
             inset: 0;
-            background: linear-gradient(
-                180deg,
-                transparent 30%,
-                rgba(0, 212, 255, 0.08)
-            );
-            opacity: 0;
+
+            background:
+                radial-gradient(
+                    circle at 85% 15%,
+                    rgba(129,140,248,0.12),
+                    transparent 35%
+                );
+
+            opacity: 0.8;
+
             transition: 0.35s;
         }
 
+        .project::after {
+            content: "";
+
+            position: absolute;
+
+            left: 0;
+            bottom: 0;
+
+            width: 100%;
+            height: 2px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #818cf8,
+                    transparent
+                );
+
+            transform:
+                scaleX(0);
+
+            transform-origin: left;
+
+            transition: 0.4s;
+        }
+
         .project:hover {
-            border-color: #00D4FF;
-            transform: translateY(-8px);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+            transform: translateY(-7px);
+
+            border-color:
+                rgba(129,140,248,0.45);
+
+            box-shadow:
+                0 25px 80px rgba(0,0,0,0.45);
+        }
+
+        .project:hover::after {
+            transform: scaleX(1);
         }
 
         .project:hover::before {
@@ -267,154 +668,607 @@
 
         .project-content {
             position: relative;
+
             z-index: 2;
         }
 
+        .project-meta {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 22px;
+        }
+
         .project-number {
-            color: #00D4FF;
-            font-size: 11px;
-            letter-spacing: 4px;
-            margin-bottom: 12px;
+            color: #818cf8;
+
+            font-family:
+                "Courier New",
+                Courier,
+                monospace;
+
+            font-size: 10px;
+
+            letter-spacing: 3px;
+        }
+
+        .project-type {
+            color: #555c68;
+
+            font-size: 9px;
+
+            letter-spacing: 2px;
+
+            text-transform: uppercase;
         }
 
         .project h3 {
-            color: #FFFFFF;
-            font-size: 32px;
-            letter-spacing: 2px;
-            margin-bottom: 8px;
+            color: #ffffff;
+
+            font-size: clamp(30px, 4vw, 48px);
+
+            line-height: 1;
+
+            letter-spacing: -1px;
+
+            margin-bottom: 13px;
         }
 
         .project-tech {
-            color: #7DD3FC;
-            font-size: 12px;
+            color: #9da3ae;
+
+            font-family:
+                "Courier New",
+                Courier,
+                monospace;
+
+            font-size: 10px;
+
             letter-spacing: 2px;
-            margin-bottom: 20px;
+
+            margin-bottom: 22px;
         }
 
-        .project p {
-            color: #94A3B8;
+        .project-description {
+            max-width: 760px;
+
+            color: #858c98;
+
             font-size: 14px;
-            margin-bottom: 25px;
+
+            line-height: 1.85;
+
+            margin-bottom: 27px;
+        }
+
+        .project-tags {
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 7px;
+
+            margin-bottom: 26px;
+        }
+
+        .project-tag {
+            padding: 7px 10px;
+
+            border:
+                1px solid rgba(255,255,255,0.08);
+
+            background:
+                rgba(255,255,255,0.025);
+
+            color: #7d8490;
+
+            font-family:
+                "Courier New",
+                Courier,
+                monospace;
+
+            font-size: 9px;
+
+            letter-spacing: 1px;
         }
 
         .project-buttons {
             display: flex;
-            gap: 10px;
+
+            gap: 9px;
+
             flex-wrap: wrap;
         }
 
         .project-buttons .button {
-            padding: 12px 18px;
+            min-height: 42px;
+
+            padding: 0 16px;
         }
 
-        .button.download {
-            border-color: #183442;
-            color: #7DD3FC;
-            background: #071018;
-        }
 
-        .button.download:hover {
-            border-color: #00D4FF;
-            background: #00D4FF;
-            color: #050B14;
-        }
+        /* =========================================================
+           ABOUT
+        ========================================================= */
 
-        /* ============================= */
-        /* ABOUT                         */
-        /* ============================= */
-
-        .about-grid {
+        .about-layout {
             display: grid;
-            grid-template-columns: 1.2fr 0.8fr;
-            gap: 60px;
+
+            grid-template-columns:
+                1.2fr
+                0.8fr;
+
+            gap: 80px;
+
             align-items: start;
         }
 
-        .about-text p {
-            color: #CBD5E1;
-            margin-bottom: 20px;
-            font-size: 15px;
+        .about-text {
+            max-width: 750px;
         }
 
-        .skills {
+        .about-text p {
+            color: #a1a7b2;
+
+            font-size: 15px;
+
+            line-height: 2;
+
+            margin-bottom: 22px;
+        }
+
+        .about-text p strong {
+            color: #ffffff;
+
+            font-weight: 600;
+        }
+
+        .about-highlight {
+            margin-top: 35px;
+
+            padding: 24px;
+
+            border-left:
+                2px solid #818cf8;
+
+            background:
+                rgba(129,140,248,0.035);
+        }
+
+        .about-highlight p {
+            margin: 0;
+
+            color: #c5cad3;
+
+            font-size: 13px;
+
+            line-height: 1.8;
+        }
+
+
+        /* =========================================================
+           SKILLS
+        ========================================================= */
+
+        .skills-layout {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 18px;
+        }
+
+        .skill-category {
+            padding: 30px;
+
+            border:
+                1px solid rgba(255,255,255,0.07);
+
+            background:
+                rgba(255,255,255,0.018);
+        }
+
+        .skill-category h3 {
+            color: #ffffff;
+
+            font-size: 15px;
+
+            letter-spacing: 1px;
+
+            margin-bottom: 22px;
+        }
+
+        .skill-list {
             display: flex;
+
             flex-wrap: wrap;
-            gap: 10px;
+
+            gap: 8px;
         }
 
         .skill {
-            padding: 9px 14px;
-            border: 1px solid #183442;
-            color: #7DD3FC;
-            font-size: 11px;
+            padding: 9px 12px;
+
+            border:
+                1px solid rgba(255,255,255,0.08);
+
+            color: #969da8;
+
+            background:
+                rgba(255,255,255,0.02);
+
+            font-family:
+                "Courier New",
+                Courier,
+                monospace;
+
+            font-size: 9px;
+
             letter-spacing: 1px;
-            background: #071018;
         }
 
-        /* ============================= */
-        /* FOOTER                        */
-        /* ============================= */
+
+        /* =========================================================
+           WHAT I DO
+        ========================================================= */
+
+        .focus-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 1px;
+
+            background:
+                rgba(255,255,255,0.08);
+
+            border:
+                1px solid rgba(255,255,255,0.08);
+        }
+
+        .focus-card {
+            min-height: 250px;
+
+            padding: 30px;
+
+            background: #080a0e;
+
+            transition:
+                background 0.3s ease;
+        }
+
+        .focus-card:hover {
+            background: #0d1016;
+        }
+
+        .focus-number {
+            color: #818cf8;
+
+            font-family:
+                "Courier New",
+                Courier,
+                monospace;
+
+            font-size: 10px;
+
+            letter-spacing: 3px;
+
+            margin-bottom: 45px;
+        }
+
+        .focus-card h3 {
+            color: #ffffff;
+
+            font-size: 19px;
+
+            margin-bottom: 13px;
+        }
+
+        .focus-card p {
+            color: #717884;
+
+            font-size: 12px;
+
+            line-height: 1.8;
+        }
+
+
+        /* =========================================================
+           EDUCATION
+        ========================================================= */
+
+        .education {
+            border:
+                1px solid rgba(255,255,255,0.08);
+
+            background:
+                linear-gradient(
+                    120deg,
+                    rgba(255,255,255,0.035),
+                    rgba(255,255,255,0.01)
+                );
+
+            padding: 38px;
+        }
+
+        .education-top {
+            display: flex;
+
+            justify-content: space-between;
+
+            gap: 30px;
+
+            margin-bottom: 30px;
+
+            padding-bottom: 25px;
+
+            border-bottom:
+                1px solid rgba(255,255,255,0.07);
+        }
+
+        .education-title h3 {
+            color: #ffffff;
+
+            font-size: 23px;
+
+            margin-bottom: 7px;
+        }
+
+        .education-title p {
+            color: #777e89;
+
+            font-size: 11px;
+
+            letter-spacing: 1px;
+        }
+
+        .education-badge {
+            color: #818cf8;
+
+            font-family:
+                "Courier New",
+                Courier,
+                monospace;
+
+            font-size: 10px;
+
+            letter-spacing: 2px;
+
+            white-space: nowrap;
+        }
+
+        .education-content {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 25px;
+        }
+
+        .year h4 {
+            color: #ffffff;
+
+            font-size: 12px;
+
+            letter-spacing: 2px;
+
+            margin-bottom: 14px;
+        }
+
+        .year p {
+            color: #747b86;
+
+            font-size: 12px;
+
+            line-height: 1.8;
+        }
+
+
+        /* =========================================================
+           FOOTER
+        ========================================================= */
 
         footer {
-            padding: 70px 20px;
-            text-align: center;
-            border-top: 1px solid rgba(0, 212, 255, 0.12);
+            padding:
+                100px 0
+                45px;
+
+            border-top:
+                1px solid rgba(255,255,255,0.07);
         }
 
-        footer .footer-title {
-            color: #00D4FF;
-            font-size: 18px;
-            letter-spacing: 4px;
-            margin-bottom: 12px;
+        .footer-main {
+            display: flex;
+
+            align-items: flex-end;
+
+            justify-content: space-between;
+
+            gap: 30px;
+
+            margin-bottom: 70px;
         }
 
-        footer p {
-            color: #64748B;
+        .footer-title {
+            color: #ffffff;
+
+            font-size: clamp(36px, 6vw, 80px);
+
+            line-height: 0.9;
+
+            font-weight: 800;
+
+            letter-spacing: -3px;
+        }
+
+        .footer-title span {
+            color: #818cf8;
+        }
+
+        .footer-side {
+            max-width: 350px;
+
+            color: #666d78;
+
             font-size: 12px;
-            letter-spacing: 2px;
+
+            line-height: 1.8;
         }
 
-        /* ============================= */
-        /* MOBILE                        */
-        /* ============================= */
+        .footer-bottom {
+            display: flex;
 
-        @media (max-width: 800px) {
+            justify-content: space-between;
+
+            gap: 20px;
+
+            padding-top: 22px;
+
+            border-top:
+                1px solid rgba(255,255,255,0.06);
+
+            color: #4f5661;
+
+            font-family:
+                "Courier New",
+                Courier,
+                monospace;
+
+            font-size: 9px;
+
+            letter-spacing: 1px;
+        }
+
+
+        /* =========================================================
+           MOBILE
+        ========================================================= */
+
+        @media (max-width: 900px) {
 
             nav {
-                padding: 18px 5%;
+                padding: 0 5%;
             }
 
             nav ul {
                 gap: 15px;
             }
 
-            nav a {
-                font-size: 10px;
+            nav ul li a {
+                font-size: 9px;
+            }
+
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 50px;
             }
 
             .hero h1 {
-                letter-spacing: 8px;
+                font-size: clamp(75px, 22vw, 140px);
             }
 
             .projects {
                 grid-template-columns: 1fr;
             }
 
-            .about-grid {
+            .project:nth-child(1),
+            .project:nth-child(2),
+            .project:nth-child(3) {
+                grid-column: span 1;
+            }
+
+            .about-layout {
                 grid-template-columns: 1fr;
-                gap: 40px;
+                gap: 50px;
             }
 
-            section {
-                padding: 80px 6%;
+            .skills-layout {
+                grid-template-columns: 1fr;
             }
 
-            .project-buttons {
+            .focus-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .education-content {
+                grid-template-columns: 1fr;
+            }
+
+            .education-top {
                 flex-direction: column;
             }
 
-            .project-buttons .button {
-                text-align: center;
+            .footer-main {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            nav {
+                height: 65px;
+            }
+
+            nav ul {
+                display: none;
+            }
+
+            .hero {
+                padding-top: 120px;
+            }
+
+            .hero h1 {
+                letter-spacing: -5px;
+            }
+
+            .hero-title {
+                font-size: 14px;
+
+                line-height: 1.6;
+
+                letter-spacing: 2px;
+            }
+
+            section {
+                padding: 90px 0;
+            }
+
+            .container {
+                width: 90%;
+            }
+
+            .section-top {
+                display: block;
+            }
+
+            .section-description {
+                margin-top: 20px;
+            }
+
+            .project {
+                min-height: 520px;
+                padding: 25px;
+            }
+
+            .project:nth-child(3) {
+                min-height: 500px;
+            }
+
+            .education {
+                padding: 25px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
             }
 
         }
@@ -422,57 +1276,194 @@
     </style>
 </head>
 
+
 <body>
 
-    <!-- ============================= -->
-    <!-- NAVIGATION                    -->
-    <!-- ============================= -->
+
+    <!-- =========================================================
+         NAVIGATION
+    ========================================================= -->
 
     <nav>
 
-        <a href="#" class="logo">MEL</a>
+        <a href="#" class="logo">
+            MEL<span>.</span>
+        </a>
 
         <ul>
-            <li><a href="#games">GAMES</a></li>
-            <li><a href="#about">ABOUT</a></li>
-            <li><a href="#skills">SKILLS</a></li>
+
+            <li>
+                <a href="#projects">PROJECTS</a>
+            </li>
+
+            <li>
+                <a href="#about">ABOUT</a>
+            </li>
+
+            <li>
+                <a href="#skills">SKILLS</a>
+            </li>
+
+            <li>
+                <a href="#focus">WHAT I DO</a>
+            </li>
+
         </ul>
 
     </nav>
 
 
-    <!-- ============================= -->
-    <!-- HERO                          -->
-    <!-- ============================= -->
+    <!-- =========================================================
+         HERO
+    ========================================================= -->
 
     <header class="hero">
 
-        <div class="hero-content">
+        <div class="container">
 
-            <div class="eyebrow">
-                GAME DEVELOPER // PORTFOLIO
-            </div>
+            <div class="hero-grid">
 
-            <h1>MEL</h1>
+                <div class="hero-left">
 
-            <h2>
-                GAME PROGRAMMER &nbsp;•&nbsp; GAME DESIGNER
-            </h2>
+                    <div class="hero-status">
 
-            <p>
-                I build interactive experiences through gameplay
-                programming, game design and rapid prototyping.
-            </p>
+                        <span class="status-dot"></span>
 
-            <div class="hero-buttons">
+                        AVAILABLE FOR DEVELOPMENT OPPORTUNITIES
 
-                <a href="#games" class="button primary">
-                    VIEW MY GAMES
-                </a>
+                    </div>
 
-                <a href="#about" class="button">
-                    ABOUT ME
-                </a>
+                    <h1>
+                        MEL
+                    </h1>
+
+                    <div class="hero-title">
+
+                        PROGRAMMER
+                        <span>•</span>
+                        GAMES DESIGN &amp; PROGRAMMING
+
+                    </div>
+
+                    <p class="hero-description">
+
+                        I build interactive software and game experiences
+                        through programming, systems design, prototyping
+                        and real-time graphics. My work spans C#, C++,
+                        Unity, OpenGL and technical game development,
+                        with a focus on turning ideas into functional,
+                        polished and playable systems.
+
+                    </p>
+
+                    <div class="hero-buttons">
+
+                        <a
+                            href="#projects"
+                            class="button primary"
+                        >
+                            VIEW MY PROJECTS →
+                        </a>
+
+                        <a
+                            href="#about"
+                            class="button"
+                        >
+                            EXPLORE MY WORK
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <div class="hero-panel">
+
+                    <div class="panel-header">
+
+                        <span class="mono">
+                            CURRENT_PROFILE
+                        </span>
+
+                        <strong>
+                            01
+                        </strong>
+
+                    </div>
+
+                    <div class="panel-item">
+
+                        <span>
+                            Role
+                        </span>
+
+                        <span>
+                            Programmer
+                        </span>
+
+                    </div>
+
+                    <div class="panel-item">
+
+                        <span>
+                            Specialism
+                        </span>
+
+                        <span>
+                            Games Design &amp; Programming
+                        </span>
+
+                    </div>
+
+                    <div class="panel-item">
+
+                        <span>
+                            Primary
+                        </span>
+
+                        <span>
+                            C# / C++
+                        </span>
+
+                    </div>
+
+                    <div class="panel-item">
+
+                        <span>
+                            Engines
+                        </span>
+
+                        <span>
+                            Unity / Unreal
+                        </span>
+
+                    </div>
+
+                    <div class="panel-item">
+
+                        <span>
+                            Graphics
+                        </span>
+
+                        <span>
+                            OpenGL
+                        </span>
+
+                    </div>
+
+                    <div class="panel-item">
+
+                        <span>
+                            Focus
+                        </span>
+
+                        <span>
+                            Interactive Systems
+                        </span>
+
+                    </div>
+
+                </div>
 
             </div>
 
@@ -481,206 +1472,581 @@
     </header>
 
 
-    <!-- ============================= -->
-    <!-- GAMES                         -->
-    <!-- ============================= -->
+    <!-- =========================================================
+         PROJECTS
+    ========================================================= -->
 
-    <section id="games">
+    <section id="projects">
 
-        <div class="section-label">
-            01 // PROJECTS
-        </div>
+        <div class="container">
 
-        <h2 class="section-title">
-            MY PROJECTS
-        </h2>
+            <div class="section-top">
 
-        <p class="section-description">
-            A collection of my game development projects,
-            prototypes and graphics programming work.
-        </p>
+                <div>
 
-
-        <div class="projects">
-
-
-            <!-- GLITCH RUNNER -->
-
-            <article class="project">
-
-                <div class="project-content">
-
-                    <div class="project-number">
-                        PROTOTYPE 01
+                    <div class="section-label">
+                        01 // SELECTED WORK
                     </div>
 
-                    <h3>
-                        GLITCH RUNNER
-                    </h3>
-
-                    <div class="project-tech">
-                        UNITY &nbsp;•&nbsp; C#
-                    </div>
-
-                    <p>
-                        A gameplay prototype focused on responsive
-                        player movement, interactive mechanics and
-                        creating an engaging gameplay experience.
-                    </p>
-
-                    <div class="project-buttons">
-
-                        <a href="glitch-runner.html" class="button">
-                            VIEW PROJECT →
-                        </a>
-
-                    </div>
+                    <h2 class="section-title">
+                        PROJECTS
+                    </h2>
 
                 </div>
 
-            </article>
+                <p class="section-description">
+
+                    A selection of programming, graphics and
+                    game development projects demonstrating
+                    gameplay systems, technical implementation,
+                    interactive mechanics and experimental design.
+
+                </p>
+
+            </div>
 
 
-            <!-- DUNE -->
+            <div class="projects">
 
-            <article class="project">
 
-                <div class="project-content">
+                <!-- =================================================
+                     GLITCH RUNNER
+                ================================================== -->
 
-                    <div class="project-number">
-                        PROTOTYPE 02
+                <article class="project">
+
+                    <div class="project-content">
+
+                        <div class="project-meta">
+
+                            <span class="project-number">
+                                PROJECT / 01
+                            </span>
+
+                            <span class="project-type">
+                                GAME PROTOTYPE
+                            </span>
+
+                        </div>
+
+                        <h3>
+                            GLITCH RUNNER
+                        </h3>
+
+                        <div class="project-tech">
+                            UNITY &nbsp;•&nbsp; C# &nbsp;•&nbsp;
+                            AUDIO &nbsp;•&nbsp; GAMEPLAY
+                        </div>
+
+                        <p class="project-description">
+
+                            A deliberately frustrating, rage-bait
+                            platformer built around precision,
+                            rhythm and reactive level design.
+                            The experience combines traditional
+                            platforming with music-driven gameplay,
+                            where the environment responds to the
+                            soundtrack and the player is forced to
+                            learn patterns, timing and movement.
+
+                            <br><br>
+
+                            A major part of the project involved
+                            extensive audio implementation and
+                            synchronisation, using music as an
+                            active gameplay element rather than
+                            simply background sound. The stage,
+                            effects and gameplay events are designed
+                            to work together with the music to create
+                            a constantly changing and increasingly
+                            chaotic experience.
+
+                        </p>
+
+                        <div class="project-tags">
+
+                            <span class="project-tag">
+                                PLATFORMING
+                            </span>
+
+                            <span class="project-tag">
+                                RHYTHM SYSTEMS
+                            </span>
+
+                            <span class="project-tag">
+                                AUDIO REACTIVE
+                            </span>
+
+                            <span class="project-tag">
+                                GAME FEEL
+                            </span>
+
+                            <span class="project-tag">
+                                C#
+                            </span>
+
+                        </div>
+
+                        <div class="project-buttons">
+
+                            <a
+                                href="glitch-runner.html"
+                                class="button primary"
+                            >
+                                VIEW PROJECT →
+                            </a>
+
+                        </div>
+
                     </div>
 
-                    <h3>
-                        DUNE
-                    </h3>
+                </article>
 
-                    <div class="project-tech">
-                        UNITY &nbsp;•&nbsp; C#
+
+                <!-- =================================================
+                     DUNE
+                ================================================== -->
+
+                <article class="project">
+
+                    <div class="project-content">
+
+                        <div class="project-meta">
+
+                            <span class="project-number">
+                                PROJECT / 02
+                            </span>
+
+                            <span class="project-type">
+                                PROCEDURAL PROTOTYPE
+                            </span>
+
+                        </div>
+
+                        <h3>
+                            DUNE
+                        </h3>
+
+                        <div class="project-tech">
+                            UNITY &nbsp;•&nbsp; C# &nbsp;•&nbsp;
+                            PROCEDURAL GENERATION
+                        </div>
+
+                        <p class="project-description">
+
+                            A reinterpretation of the core gameplay
+                            loop from the Dune mobile game, built
+                            around rolling up and down a constantly
+                            changing desert landscape while attempting
+                            to survive for as long as possible.
+
+                            <br><br>
+
+                            The project expands the original concept
+                            with procedural terrain generation and
+                            a darker horror-inspired atmosphere.
+                            Instead of simply chasing a high score,
+                            the environment gradually introduces
+                            narrative elements designed to create
+                            tension and make the world feel increasingly
+                            unsettling.
+
+                        </p>
+
+                        <div class="project-tags">
+
+                            <span class="project-tag">
+                                PROCEDURAL GENERATION
+                            </span>
+
+                            <span class="project-tag">
+                                PLAYER MOVEMENT
+                            </span>
+
+                            <span class="project-tag">
+                                TERRAIN
+                            </span>
+
+                            <span class="project-tag">
+                                HORROR
+                            </span>
+
+                            <span class="project-tag">
+                                C#
+                            </span>
+
+                        </div>
+
+                        <div class="project-buttons">
+
+                            <a
+                                href="dune.html"
+                                class="button primary"
+                            >
+                                VIEW PROJECT →
+                            </a>
+
+                        </div>
+
                     </div>
 
-                    <p>
-                        A desert-inspired gameplay prototype exploring
-                        player interaction, exploration, mechanics
-                        and level design.
-                    </p>
+                </article>
 
-                    <div class="project-buttons">
 
-                        <a href="dune.html" class="button">
-                            VIEW PROJECT →
-                        </a>
+                <!-- =================================================
+                     GRAPHICS PROGRAMMING
+                ================================================== -->
+
+                <article class="project">
+
+                    <div class="project-content">
+
+                        <div class="project-meta">
+
+                            <span class="project-number">
+                                PROJECT / 03
+                            </span>
+
+                            <span class="project-type">
+                                GRAPHICS PROGRAMMING
+                            </span>
+
+                        </div>
+
+                        <h3>
+                            GRAPHICS PROGRAMMING
+                        </h3>
+
+                        <div class="project-tech">
+                            C++ &nbsp;•&nbsp; OPENGL &nbsp;•&nbsp;
+                            3D RENDERING
+                        </div>
+
+                        <p class="project-description">
+
+                            A low-level graphics programming project
+                            focused on understanding how real-time
+                            3D environments are constructed and
+                            rendered.
+
+                            <br><br>
+
+                            The project involved building a 3D world
+                            with interactive objects, camera controls
+                            and real-time transformations. One of the
+                            central systems is a world containing
+                            floating barrels that can be approached,
+                            picked up and moved through the environment.
+                            Player movement and camera navigation use
+                            WASD-based controls, allowing the scene
+                            to be explored while interacting with
+                            physical objects.
+
+                            <br><br>
+
+                            The project explores the underlying
+                            programming concepts behind rendering,
+                            transformations, cameras, lighting,
+                            textures and interactive 3D environments
+                            rather than relying entirely on a
+                            high-level engine.
+
+                        </p>
+
+                        <div class="project-tags">
+
+                            <span class="project-tag">
+                                C++
+                            </span>
+
+                            <span class="project-tag">
+                                OPENGL
+                            </span>
+
+                            <span class="project-tag">
+                                3D RENDERING
+                            </span>
+
+                            <span class="project-tag">
+                                CAMERA SYSTEM
+                            </span>
+
+                            <span class="project-tag">
+                                TRANSFORMATIONS
+                            </span>
+
+                            <span class="project-tag">
+                                INTERACTION
+                            </span>
+
+                        </div>
+
+                        <div class="project-buttons">
+
+                            <a
+                                href="graphics-programming.html"
+                                class="button primary"
+                            >
+                                VIEW PROJECT →
+                            </a>
+
+                            <a
+                                href="https://github.com/MelDevvv/Graphics_Programming/archive/refs/tags/V1.0.0.zip"
+                                class="button"
+                            >
+                                DOWNLOAD SOURCE →
+                            </a>
+
+                        </div>
 
                     </div>
 
-                </div>
-
-            </article>
+                </article>
 
 
-            <!-- GRAPHICS PROGRAMMING -->
-
-            <article class="project">
-
-                <div class="project-content">
-
-                    <div class="project-number">
-                        PROJECT 03
-                    </div>
-
-                    <h3>
-                        GRAPHICS PROGRAMMING
-                    </h3>
-
-                    <div class="project-tech">
-                        C++ &nbsp;•&nbsp; OPENGL
-                    </div>
-
-                    <p>
-                        A custom graphics programming project exploring
-                        real-time rendering, 3D environments, camera
-                        systems, transformations, lighting and textures.
-                    </p>
-
-                    <div class="project-buttons">
-
-                        <a href="graphics-programming.html" class="button">
-                            VIEW PROJECT →
-                        </a>
-
-                        <a href="https://github.com/MelDevvv/Graphics_Programming/archive/refs/tags/V1.0.0.zip"
-                           class="button download">
-                            DOWNLOAD →
-                        </a>
-
-                    </div>
-
-                </div>
-
-            </article>
-
+            </div>
 
         </div>
 
     </section>
 
 
-    <!-- ============================= -->
-    <!-- ABOUT                         -->
-    <!-- ============================= -->
+    <!-- =========================================================
+         ABOUT
+    ========================================================= -->
 
     <section id="about">
 
-        <div class="section-label">
-            02 // ABOUT
-        </div>
+        <div class="container">
 
-        <h2 class="section-title">
-            ABOUT ME
-        </h2>
+            <div class="section-top">
 
-        <div class="about-grid">
+                <div>
 
-            <div class="about-text">
+                    <div class="section-label">
+                        02 // PROFILE
+                    </div>
 
-                <p>
-                    I'm a Game Design &amp; Programming student
-                    developing my skills across both the technical
-                    and creative sides of game development.
-                </p>
+                    <h2 class="section-title">
+                        ABOUT
+                    </h2>
 
-                <p>
-                    My main focus is gameplay programming and game
-                    design. I enjoy taking an idea and turning it
-                    into something playable — designing mechanics,
-                    building systems and creating responsive
-                    interactions.
-                </p>
-
-                <p>
-                    I'm also interested in real-time graphics and
-                    rendering, using C++ and OpenGL to understand
-                    the technology behind modern games.
-                </p>
+                </div>
 
             </div>
 
-            <div>
 
-                <div class="section-label">
-                    TECHNOLOGY
+            <div class="about-layout">
+
+
+                <div class="about-text">
+
+                    <p>
+
+                        I'm a <strong>Programmer and Games Design &
+                        Programming student</strong> with a strong
+                        interest in building interactive software,
+                        gameplay systems and technically ambitious
+                        prototypes.
+
+                    </p>
+
+                    <p>
+
+                        My work combines programming with practical
+                        game development. I enjoy taking an idea from
+                        an initial concept through to a working
+                        prototype, designing the mechanics, writing
+                        the systems behind them and iterating on the
+                        final experience.
+
+                    </p>
+
+                    <p>
+
+                        My current development work spans
+                        <strong>C#, C++, Unity, Unreal Engine and
+                        OpenGL</strong>, with particular interest in
+                        gameplay programming, mechanics, procedural
+                        systems, real-time graphics, interactive
+                        environments and technical problem solving.
+
+                    </p>
+
+                    <p>
+
+                        Alongside programming, my projects involve
+                        elements of level design, audio, player
+                        experience, prototyping and experimentation.
+                        This allows me to approach projects from both
+                        the technical implementation and the experience
+                        being created for the player.
+
+                    </p>
+
+
+                    <div class="about-highlight">
+
+                        <p>
+
+                            My goal is to continue developing as a
+                            technically capable programmer who can
+                            contribute across the development process —
+                            from low-level systems and graphics to
+                            gameplay mechanics, tools and complete
+                            interactive experiences.
+
+                        </p>
+
+                    </div>
+
                 </div>
 
-                <div class="skills">
 
-                    <span class="skill">C++</span>
-                    <span class="skill">C#</span>
-                    <span class="skill">UNITY</span>
-                    <span class="skill">OPENGL</span>
-                    <span class="skill">PYTHON</span>
-                    <span class="skill">BLENDER</span>
-                    <span class="skill">GIT</span>
-                    <span class="skill">UNREAL ENGINE</span>
+                <div>
+
+                    <div class="section-label">
+                        CORE TECHNOLOGY
+                    </div>
+
+                    <div class="skills-layout">
+
+                        <div class="skill-category">
+
+                            <h3>
+                                Programming
+                            </h3>
+
+                            <div class="skill-list">
+
+                                <span class="skill">
+                                    C++
+                                </span>
+
+                                <span class="skill">
+                                    C#
+                                </span>
+
+                                <span class="skill">
+                                    Python
+                                </span>
+
+                                <span class="skill">
+                                    OOP
+                                </span>
+
+                                <span class="skill">
+                                    Algorithms
+                                </span>
+
+                                <span class="skill">
+                                    Computational Methods
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="skill-category">
+
+                            <h3>
+                                Development
+                            </h3>
+
+                            <div class="skill-list">
+
+                                <span class="skill">
+                                    Unity
+                                </span>
+
+                                <span class="skill">
+                                    Unreal Engine
+                                </span>
+
+                                <span class="skill">
+                                    Git
+                                </span>
+
+                                <span class="skill">
+                                    Game Prototyping
+                                </span>
+
+                                <span class="skill">
+                                    Mechanics
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="skill-category">
+
+                            <h3>
+                                Graphics
+                            </h3>
+
+                            <div class="skill-list">
+
+                                <span class="skill">
+                                    OpenGL
+                                </span>
+
+                                <span class="skill">
+                                    3D Rendering
+                                </span>
+
+                                <span class="skill">
+                                    Cameras
+                                </span>
+
+                                <span class="skill">
+                                    Lighting
+                                </span>
+
+                                <span class="skill">
+                                    Textures
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="skill-category">
+
+                            <h3>
+                                Design
+                            </h3>
+
+                            <div class="skill-list">
+
+                                <span class="skill">
+                                    Gameplay Design
+                                </span>
+
+                                <span class="skill">
+                                    Level Design
+                                </span>
+
+                                <span class="skill">
+                                    Game Feel
+                                </span>
+
+                                <span class="skill">
+                                    Audio
+                                </span>
+
+                                <span class="skill">
+                                    Prototyping
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
 
                 </div>
 
@@ -691,56 +2057,351 @@
     </section>
 
 
-    <!-- ============================= -->
-    <!-- SKILLS                        -->
-    <!-- ============================= -->
+    <!-- =========================================================
+         WHAT I DO
+    ========================================================= -->
 
-    <section id="skills">
+    <section id="focus">
 
-        <div class="section-label">
-            03 // FOCUS
-        </div>
+        <div class="container">
 
-        <h2 class="section-title">
-            WHAT I DO
-        </h2>
+            <div class="section-top">
 
-        <p class="section-description">
-            Combining programming and design to build complete
-            playable experiences.
-        </p>
+                <div>
 
-        <div class="skills">
+                    <div class="section-label">
+                        03 // CAPABILITIES
+                    </div>
 
-            <span class="skill">GAMEPLAY PROGRAMMING</span>
-            <span class="skill">GAME DESIGN</span>
-            <span class="skill">GAMEPLAY SYSTEMS</span>
-            <span class="skill">PLAYER CONTROLLERS</span>
-            <span class="skill">LEVEL DESIGN</span>
-            <span class="skill">PROTOTYPING</span>
-            <span class="skill">REAL-TIME GRAPHICS</span>
-            <span class="skill">UNITY DEVELOPMENT</span>
-            <span class="skill">C++ DEVELOPMENT</span>
-            <span class="skill">OPENGL</span>
+                    <h2 class="section-title">
+                        WHAT I DO
+                    </h2>
+
+                </div>
+
+                <p class="section-description">
+
+                    My development focus reflects the areas covered
+                    throughout my Computer Games Design and Programming
+                    degree at Staffordshire University London, alongside
+                    the systems and projects I am actively building.
+
+                </p>
+
+            </div>
+
+
+            <div class="focus-grid">
+
+
+                <div class="focus-card">
+
+                    <div class="focus-number">
+                        01 / PROGRAMMING
+                    </div>
+
+                    <h3>
+                        SOFTWARE &amp; GAME PROGRAMMING
+                    </h3>
+
+                    <p>
+
+                        Developing programming fundamentals,
+                        object-oriented systems, algorithms,
+                        computational methods and gameplay
+                        solutions using C#, C++ and other tools.
+
+                    </p>
+
+                </div>
+
+
+                <div class="focus-card">
+
+                    <div class="focus-number">
+                        02 / GAMEPLAY
+                    </div>
+
+                    <h3>
+                        GAMEPLAY SYSTEMS
+                    </h3>
+
+                    <p>
+
+                        Designing and implementing player movement,
+                        mechanics, interaction systems, game rules,
+                        game feel and responsive gameplay experiences.
+
+                    </p>
+
+                </div>
+
+
+                <div class="focus-card">
+
+                    <div class="focus-number">
+                        03 / PROTOTYPING
+                    </div>
+
+                    <h3>
+                        RAPID PROTOTYPING
+                    </h3>
+
+                    <p>
+
+                        Turning concepts into playable prototypes,
+                        testing mechanics quickly and iterating on
+                        ideas through practical development.
+
+                    </p>
+
+                </div>
+
+
+                <div class="focus-card">
+
+                    <div class="focus-number">
+                        04 / GRAPHICS
+                    </div>
+
+                    <h3>
+                        REAL-TIME GRAPHICS
+                    </h3>
+
+                    <p>
+
+                        Exploring rendering and graphics programming
+                        through C++ and OpenGL, including 3D
+                        environments, transformations, cameras,
+                        lighting and interactive scenes.
+
+                    </p>
+
+                </div>
+
+
+                <div class="focus-card">
+
+                    <div class="focus-number">
+                        05 / SYSTEMS
+                    </div>
+
+                    <h3>
+                        TECHNICAL SYSTEMS
+                    </h3>
+
+                    <p>
+
+                        Building the underlying systems that make
+                        interactive experiences work, including
+                        object interaction, procedural systems,
+                        AI concepts, tools and technical gameplay.
+
+                    </p>
+
+                </div>
+
+
+                <div class="focus-card">
+
+                    <div class="focus-number">
+                        06 / DESIGN
+                    </div>
+
+                    <h3>
+                        GAME &amp; LEVEL DESIGN
+                    </h3>
+
+                    <p>
+
+                        Combining technical implementation with
+                        mechanics design, level structure, player
+                        experience, experimentation and interactive
+                        storytelling.
+
+                    </p>
+
+                </div>
+
+
+            </div>
 
         </div>
 
     </section>
 
 
-    <!-- ============================= -->
-    <!-- FOOTER                        -->
-    <!-- ============================= -->
+    <!-- =========================================================
+         EDUCATION
+    ========================================================= -->
+
+    <section>
+
+        <div class="container">
+
+            <div class="section-top">
+
+                <div>
+
+                    <div class="section-label">
+                        04 // EDUCATION
+                    </div>
+
+                    <h2 class="section-title">
+                        DEVELOPMENT
+                    </h2>
+
+                </div>
+
+                <p class="section-description">
+
+                    Building a broad technical foundation across
+                    programming, graphics, game development,
+                    mechanics and collaborative production.
+
+                </p>
+
+            </div>
+
+
+            <div class="education">
+
+                <div class="education-top">
+
+                    <div class="education-title">
+
+                        <h3>
+                            Computer Games Design &amp; Programming
+                        </h3>
+
+                        <p>
+                            STAFFORDSHIRE UNIVERSITY LONDON
+                        </p>
+
+                    </div>
+
+                    <div class="education-badge">
+                        BSc (HONS)
+                    </div>
+
+                </div>
+
+
+                <div class="education-content">
+
+
+                    <div class="year">
+
+                        <h4>
+                            YEAR 01
+                        </h4>
+
+                        <p>
+
+                            Programming fundamentals, C# scripting,
+                            computational methods, game prototyping,
+                            mechanics prototyping and introduction
+                            to graphics programming.
+
+                        </p>
+
+                    </div>
+
+
+                    <div class="year">
+
+                        <h4>
+                            YEAR 02
+                        </h4>
+
+                        <p>
+
+                            Advanced mechanics, C++ for engines,
+                            game AI, mechanics design, collaborative
+                            development and user interface design,
+                            with opportunities to explore areas such
+                            as game audio, tools and experimental
+                            gameplay.
+
+                        </p>
+
+                    </div>
+
+
+                    <div class="year">
+
+                        <h4>
+                            YEAR 03
+                        </h4>
+
+                        <p>
+
+                            Games development projects, low-level
+                            gameplay, multiplayer level design,
+                            senior collaborative development and
+                            technical prototyping, bringing together
+                            programming and production skills into
+                            larger portfolio projects.
+
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         FOOTER
+    ========================================================= -->
 
     <footer>
 
-        <div class="footer-title">
-            DESIGN. PROGRAM. ITERATE.
-        </div>
+        <div class="container">
 
-        <p>
-            MEL // GAME PROGRAMMER &amp; GAME DESIGNER
-        </p>
+            <div class="footer-main">
+
+                <div class="footer-title">
+
+                    BUILD.<br>
+                    <span>ITERATE.</span>
+
+                </div>
+
+                <p class="footer-side">
+
+                    Programmer focused on interactive systems,
+                    gameplay development, real-time graphics and
+                    experimental software projects.
+
+                </p>
+
+            </div>
+
+
+            <div class="footer-bottom">
+
+                <span>
+                    MEL // PROGRAMMER
+                </span>
+
+                <span>
+                    GAMES DESIGN &amp; PROGRAMMING
+                </span>
+
+                <span>
+                    © 2026
+                </span>
+
+            </div>
+
+        </div>
 
     </footer>
 
