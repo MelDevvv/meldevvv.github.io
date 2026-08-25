@@ -4,17 +4,20 @@
 <head>
 
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Glitch Runner // MEL</title>
+    <title>Glitch Runner | MEL — Programmer Portfolio</title>
 
     <meta
         name="description"
-        content="Glitch Runner — Prototype 01 by MEL."
+        content="Glitch Runner — a Unity and C# gameplay prototype by MEL exploring rage-bait platforming, rhythm-driven mechanics, reactive environments, audio systems and interactive 3D gameplay."
     >
 
     <style>
+
+        /* =========================================================
+           RESET
+        ========================================================= */
 
         * {
             margin: 0;
@@ -27,11 +30,24 @@
         }
 
         body {
-            background: #050B14;
-            color: #E5F7FF;
-            font-family: Arial, Helvetica, sans-serif;
-            line-height: 1.6;
+            background: #05070b;
+            color: #e7edf5;
+            font-family:
+                Inter,
+                ui-sans-serif,
+                system-ui,
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                Arial,
+                sans-serif;
+            line-height: 1.7;
             overflow-x: hidden;
+        }
+
+        body::selection {
+            background: #7c3aed;
+            color: #ffffff;
         }
 
         a {
@@ -39,30 +55,38 @@
             text-decoration: none;
         }
 
-        /* ============================= */
-        /* BACKGROUND                    */
-        /* ============================= */
+
+        /* =========================================================
+           BACKGROUND
+        ========================================================= */
 
         body::before {
             content: "";
             position: fixed;
             inset: 0;
-            pointer-events: none;
 
-            background:
+            background-image:
                 linear-gradient(
-                    rgba(0, 212, 255, 0.025) 1px,
+                    rgba(255,255,255,0.025) 1px,
                     transparent 1px
                 ),
                 linear-gradient(
                     90deg,
-                    rgba(0, 212, 255, 0.025) 1px,
+                    rgba(255,255,255,0.025) 1px,
                     transparent 1px
                 );
 
-            background-size: 50px 50px;
+            background-size: 60px 60px;
 
-            z-index: -2;
+            mask-image:
+                linear-gradient(
+                    to bottom,
+                    black,
+                    transparent 85%
+                );
+
+            pointer-events: none;
+            z-index: -5;
         }
 
         body::after {
@@ -70,26 +94,40 @@
 
             position: fixed;
 
-            width: 650px;
-            height: 650px;
+            width: 700px;
+            height: 700px;
 
-            top: -300px;
-            right: -250px;
+            top: -350px;
+            right: -200px;
 
-            background: rgba(0, 212, 255, 0.08);
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(124,58,237,0.16),
+                    transparent 68%
+                );
 
-            filter: blur(130px);
-
-            border-radius: 50%;
+            filter: blur(30px);
 
             pointer-events: none;
 
-            z-index: -1;
+            z-index: -4;
         }
 
-        /* ============================= */
-        /* NAVIGATION                    */
-        /* ============================= */
+
+        /* =========================================================
+           GLOBAL CONTAINER
+        ========================================================= */
+
+        .container {
+            width: min(1180px, 90%);
+            margin: auto;
+        }
+
+
+        /* =========================================================
+           NAVIGATION
+        ========================================================= */
 
         nav {
             position: fixed;
@@ -99,371 +137,1095 @@
 
             width: 100%;
 
-            padding: 20px 6%;
-
-            display: flex;
-
-            justify-content: space-between;
-            align-items: center;
-
-            background: rgba(5, 11, 20, 0.85);
-
-            backdrop-filter: blur(15px);
+            z-index: 1000;
 
             border-bottom:
-                1px solid rgba(0, 212, 255, 0.12);
+                1px solid rgba(255,255,255,0.07);
 
-            z-index: 1000;
+            background:
+                rgba(5,7,11,0.78);
+
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+        }
+
+        .nav-inner {
+            width: min(1180px, 90%);
+            margin: auto;
+
+            min-height: 72px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 30px;
         }
 
         .logo {
-            color: #00D4FF;
+            display: flex;
+            align-items: center;
+            gap: 12px;
 
-            font-size: 20px;
+            font-size: 18px;
+            font-weight: 900;
 
-            font-weight: 800;
+            letter-spacing: 4px;
 
-            letter-spacing: 5px;
+            color: #ffffff;
         }
 
-        nav a {
-            color: #94A3B8;
+        .logo-mark {
+            width: 10px;
+            height: 10px;
+
+            background: #7c3aed;
+
+            box-shadow:
+                0 0 20px rgba(124,58,237,0.7);
+
+            transform: rotate(45deg);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+
+            gap: 28px;
+
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #8b95a7;
 
             font-size: 11px;
+            font-weight: 700;
 
-            letter-spacing: 2px;
+            letter-spacing: 1.8px;
 
             transition: 0.25s;
         }
 
-        nav a:hover {
-            color: #00D4FF;
+        .nav-links a:hover {
+            color: #ffffff;
         }
 
-        /* ============================= */
-        /* HERO                          */
-        /* ============================= */
+        .nav-back {
+            color: #ffffff !important;
+
+            padding:
+                9px 14px;
+
+            border:
+                1px solid rgba(255,255,255,0.14);
+        }
+
+        .nav-back:hover {
+            border-color: #7c3aed;
+            background: rgba(124,58,237,0.1);
+        }
+
+
+        /* =========================================================
+           HERO
+        ========================================================= */
 
         .hero {
-            min-height: 80vh;
+            min-height: 92vh;
 
             display: flex;
-
             align-items: center;
-            justify-content: center;
 
-            text-align: center;
+            position: relative;
 
-            padding: 140px 20px 80px;
+            padding:
+                150px 0 110px;
 
             border-bottom:
-                1px solid rgba(0, 212, 255, 0.12);
+                1px solid rgba(255,255,255,0.07);
+
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "";
+
+            position: absolute;
+
+            width: 900px;
+            height: 500px;
+
+            left: 50%;
+            top: 35%;
+
+            transform:
+                translate(-50%, -50%);
+
+            background:
+                radial-gradient(
+                    ellipse,
+                    rgba(124,58,237,0.11),
+                    transparent 68%
+                );
+
+            pointer-events: none;
         }
 
         .hero-content {
-            max-width: 950px;
+            position: relative;
+            z-index: 2;
+
+            width: 100%;
         }
 
-        .prototype {
-            color: #00D4FF;
+        .hero-meta {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+
+            color: #8b95a7;
 
             font-size: 11px;
+            font-weight: 800;
 
-            letter-spacing: 5px;
+            letter-spacing: 2.5px;
 
-            margin-bottom: 20px;
+            margin-bottom: 28px;
+        }
+
+        .hero-meta span:first-child {
+            color: #a78bfa;
+        }
+
+        .hero-line {
+            width: 35px;
+            height: 1px;
+
+            background: #7c3aed;
         }
 
         .hero h1 {
-            font-size: clamp(55px, 10vw, 110px);
+            max-width: 1000px;
 
-            line-height: 1;
+            font-size:
+                clamp(64px, 11vw, 145px);
 
-            letter-spacing: 8px;
+            line-height: 0.88;
 
-            color: #FFFFFF;
+            letter-spacing: -5px;
 
-            margin-bottom: 20px;
+            font-weight: 950;
+
+            color: #ffffff;
+
+            margin-bottom: 30px;
         }
 
-        .hero h2 {
-            color: #7DD3FC;
+        .hero h1 span {
+            color: transparent;
 
-            font-size: 16px;
+            -webkit-text-stroke:
+                1px rgba(255,255,255,0.5);
 
-            letter-spacing: 4px;
+            text-shadow: none;
+        }
 
-            font-weight: 500;
+        .hero-subtitle {
+            display: flex;
+            flex-wrap: wrap;
+
+            gap: 10px;
+
+            margin-bottom: 28px;
+        }
+
+        .tag {
+            padding:
+                8px 12px;
+
+            border:
+                1px solid rgba(255,255,255,0.1);
+
+            background:
+                rgba(255,255,255,0.035);
+
+            color: #cbd5e1;
+
+            font-size: 10px;
+            font-weight: 800;
+
+            letter-spacing: 1.5px;
+        }
+
+        .tag.accent {
+            color: #c4b5fd;
+
+            border-color:
+                rgba(124,58,237,0.45);
+
+            background:
+                rgba(124,58,237,0.08);
         }
 
         .hero-description {
-            max-width: 700px;
+            max-width: 780px;
 
-            margin: 30px auto;
+            color: #9aa5b5;
 
-            color: #94A3B8;
-
-            font-size: 16px;
+            font-size:
+                clamp(15px, 2vw, 18px);
 
             line-height: 1.9;
+
+            margin-bottom: 35px;
         }
 
-        /* ============================= */
-        /* BUTTONS                       */
-        /* ============================= */
+        .hero-description strong {
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+
+        /* =========================================================
+           BUTTONS
+        ========================================================= */
 
         .buttons {
             display: flex;
 
-            justify-content: center;
+            align-items: center;
 
-            gap: 15px;
+            gap: 12px;
 
             flex-wrap: wrap;
-
-            margin-top: 35px;
         }
 
         .button {
-            display: inline-block;
+            display: inline-flex;
 
-            padding: 14px 28px;
+            align-items: center;
+            justify-content: center;
+
+            min-height: 48px;
+
+            padding:
+                0 20px;
 
             border:
-                1px solid #00D4FF;
+                1px solid rgba(255,255,255,0.14);
 
-            color: #00D4FF;
+            background:
+                rgba(255,255,255,0.035);
 
-            font-size: 11px;
+            color: #ffffff;
 
-            font-weight: 700;
+            font-size: 10px;
+            font-weight: 800;
 
-            letter-spacing: 2px;
+            letter-spacing: 1.7px;
 
-            transition: 0.3s;
+            transition:
+                transform 0.25s,
+                border-color 0.25s,
+                background 0.25s,
+                box-shadow 0.25s;
         }
 
         .button:hover {
-            background: #00D4FF;
+            transform: translateY(-3px);
 
-            color: #050B14;
+            border-color:
+                rgba(124,58,237,0.7);
+
+            background:
+                rgba(124,58,237,0.1);
 
             box-shadow:
-                0 0 30px rgba(0, 212, 255, 0.3);
-
-            transform: translateY(-3px);
+                0 15px 40px rgba(0,0,0,0.25);
         }
 
         .button.primary {
-            background: #00D4FF;
+            background: #7c3aed;
 
-            color: #050B14;
+            border-color: #7c3aed;
+
+            color: #ffffff;
+
+            box-shadow:
+                0 0 35px rgba(124,58,237,0.18);
         }
 
-        /* ============================= */
-        /* CONTENT                       */
-        /* ============================= */
+        .button.primary:hover {
+            background: #8b5cf6;
+
+            border-color: #8b5cf6;
+
+            box-shadow:
+                0 15px 45px rgba(124,58,237,0.25);
+        }
+
+
+        /* =========================================================
+           PROJECT STATS
+        ========================================================= */
+
+        .hero-stats {
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, minmax(0, 1fr));
+
+            max-width: 900px;
+
+            margin-top: 70px;
+
+            border-top:
+                1px solid rgba(255,255,255,0.08);
+
+            border-bottom:
+                1px solid rgba(255,255,255,0.08);
+        }
+
+        .stat {
+            padding:
+                22px 20px;
+
+            border-right:
+                1px solid rgba(255,255,255,0.07);
+        }
+
+        .stat:last-child {
+            border-right: none;
+        }
+
+        .stat strong {
+            display: block;
+
+            color: #ffffff;
+
+            font-size: 18px;
+
+            margin-bottom: 4px;
+        }
+
+        .stat span {
+            color: #687385;
+
+            font-size: 9px;
+            font-weight: 800;
+
+            letter-spacing: 1.5px;
+        }
+
+
+        /* =========================================================
+           SECTION
+        ========================================================= */
 
         section {
-            max-width: 1000px;
-
-            margin: auto;
-
-            padding: 100px 6%;
+            padding: 115px 0;
         }
 
-        .label {
-            color: #00D4FF;
+        .section-header {
+            max-width: 800px;
+
+            margin-bottom: 55px;
+        }
+
+        .section-label {
+            display: flex;
+            align-items: center;
+
+            gap: 12px;
+
+            color: #a78bfa;
 
             font-size: 10px;
+            font-weight: 900;
 
-            letter-spacing: 5px;
+            letter-spacing: 3px;
 
-            margin-bottom: 12px;
+            margin-bottom: 15px;
         }
 
-        h3 {
-            font-size: 34px;
+        .section-label::before {
+            content: "";
 
-            color: #FFFFFF;
+            width: 25px;
+            height: 1px;
 
-            letter-spacing: 2px;
-
-            margin-bottom: 25px;
+            background: #7c3aed;
         }
 
-        .text {
-            color: #CBD5E1;
+        .section-title {
+            color: #ffffff;
+
+            font-size:
+                clamp(35px, 5vw, 60px);
+
+            line-height: 1;
+
+            letter-spacing: -2px;
+
+            margin-bottom: 22px;
+        }
+
+        .section-description {
+            color: #8f9aaa;
 
             font-size: 15px;
 
             line-height: 1.9;
-
-            max-width: 800px;
         }
 
-        /* ============================= */
-        /* FEATURE GRID                  */
-        /* ============================= */
 
-        .features {
+        /* =========================================================
+           OVERVIEW GRID
+        ========================================================= */
+
+        .overview-grid {
+            display: grid;
+
+            grid-template-columns:
+                1.35fr 0.65fr;
+
+            gap: 20px;
+        }
+
+        .overview-main,
+        .overview-side {
+            border:
+                1px solid rgba(255,255,255,0.08);
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(18,22,32,0.95),
+                    rgba(8,11,17,0.95)
+                );
+        }
+
+        .overview-main {
+            padding: 40px;
+        }
+
+        .overview-main p {
+            color: #a4adbb;
+
+            font-size: 15px;
+
+            line-height: 2;
+        }
+
+        .overview-main p + p {
+            margin-top: 20px;
+        }
+
+        .overview-main strong {
+            color: #ffffff;
+        }
+
+        .overview-side {
+            padding: 30px;
+        }
+
+        .side-title {
+            color: #ffffff;
+
+            font-size: 11px;
+            font-weight: 900;
+
+            letter-spacing: 2px;
+
+            margin-bottom: 20px;
+        }
+
+        .side-item {
+            padding:
+                14px 0;
+
+            border-bottom:
+                1px solid rgba(255,255,255,0.07);
+        }
+
+        .side-item:last-child {
+            border-bottom: none;
+        }
+
+        .side-item span {
+            display: block;
+
+            color: #687385;
+
+            font-size: 9px;
+            font-weight: 800;
+
+            letter-spacing: 1.5px;
+
+            margin-bottom: 4px;
+        }
+
+        .side-item strong {
+            color: #dbe3ed;
+
+            font-size: 13px;
+        }
+
+
+        /* =========================================================
+           CORE FEATURES
+        ========================================================= */
+
+        .feature-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 15px;
+        }
+
+        .feature-card {
+            position: relative;
+
+            padding: 32px;
+
+            min-height: 210px;
+
+            border:
+                1px solid rgba(255,255,255,0.08);
+
+            background:
+                rgba(10,13,20,0.8);
+
+            overflow: hidden;
+
+            transition:
+                transform 0.3s,
+                border-color 0.3s,
+                background 0.3s;
+        }
+
+        .feature-card::after {
+            content: "";
+
+            position: absolute;
+
+            width: 120px;
+            height: 120px;
+
+            right: -60px;
+            bottom: -60px;
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(124,58,237,0.16),
+                    transparent 70%
+                );
+
+            transition: 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+
+            border-color:
+                rgba(124,58,237,0.45);
+
+            background:
+                rgba(16,19,29,0.95);
+        }
+
+        .feature-number {
+            color: #6d28d9;
+
+            font-size: 10px;
+            font-weight: 900;
+
+            letter-spacing: 2px;
+
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            color: #ffffff;
+
+            font-size: 20px;
+
+            margin-bottom: 10px;
+        }
+
+        .feature-card p {
+            color: #8994a4;
+
+            font-size: 13px;
+
+            line-height: 1.8;
+        }
+
+
+        /* =========================================================
+           AUDIO / RHYTHM SECTION
+        ========================================================= */
+
+        .split-section {
+            display: grid;
+
+            grid-template-columns:
+                0.8fr 1.2fr;
+
+            gap: 70px;
+
+            align-items: center;
+        }
+
+        .large-statement {
+            color: #ffffff;
+
+            font-size:
+                clamp(30px, 4vw, 50px);
+
+            line-height: 1.05;
+
+            letter-spacing: -1.5px;
+
+            font-weight: 800;
+        }
+
+        .large-statement span {
+            color: #a78bfa;
+        }
+
+        .split-copy p {
+            color: #8f9aaa;
+
+            font-size: 15px;
+
+            line-height: 2;
+        }
+
+        .split-copy p + p {
+            margin-top: 20px;
+        }
+
+
+        /* =========================================================
+           TECHNICAL SYSTEMS
+        ========================================================= */
+
+        .systems {
             display: grid;
 
             grid-template-columns:
                 repeat(3, 1fr);
 
-            gap: 15px;
-
-            margin-top: 40px;
+            gap: 12px;
         }
 
-        .feature {
+        .system {
             padding: 25px;
 
-            background: #071018;
-
             border:
-                1px solid #183442;
+                1px solid rgba(255,255,255,0.08);
 
-            transition: 0.3s;
+            background:
+                rgba(255,255,255,0.025);
         }
 
-        .feature:hover {
-            border-color: #00D4FF;
-
-            transform: translateY(-4px);
-        }
-
-        .feature strong {
-            display: block;
-
-            color: #00D4FF;
+        .system h4 {
+            color: #ffffff;
 
             font-size: 12px;
 
+            letter-spacing: 1.3px;
+
+            margin-bottom: 9px;
+        }
+
+        .system p {
+            color: #788495;
+
+            font-size: 12px;
+
+            line-height: 1.7;
+        }
+
+
+        /* =========================================================
+           DEVELOPMENT APPROACH
+        ========================================================= */
+
+        .process {
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            border-top:
+                1px solid rgba(255,255,255,0.08);
+
+            border-bottom:
+                1px solid rgba(255,255,255,0.08);
+        }
+
+        .process-step {
+            padding: 30px 25px;
+
+            border-right:
+                1px solid rgba(255,255,255,0.08);
+        }
+
+        .process-step:last-child {
+            border-right: none;
+        }
+
+        .process-step span {
+            display: block;
+
+            color: #7c3aed;
+
+            font-size: 10px;
+            font-weight: 900;
+
             letter-spacing: 2px;
 
-            margin-bottom: 10px;
+            margin-bottom: 15px;
         }
 
-        .feature span {
-            color: #94A3B8;
+        .process-step h4 {
+            color: #ffffff;
 
-            font-size: 13px;
+            font-size: 15px;
+
+            margin-bottom: 8px;
         }
 
-        /* ============================= */
-        /* DEVELOPMENT INFO              */
-        /* ============================= */
+        .process-step p {
+            color: #748093;
+
+            font-size: 12px;
+
+            line-height: 1.7;
+        }
+
+
+        /* =========================================================
+           PROJECT INFORMATION
+        ========================================================= */
 
         .info-box {
-            padding: 30px;
+            border:
+                1px solid rgba(255,255,255,0.08);
 
             background:
-                linear-gradient(
-                    145deg,
-                    #0B1728,
-                    #071018
-                );
-
-            border:
-                1px solid #183442;
+                rgba(10,13,20,0.8);
         }
 
         .info-row {
-            display: flex;
+            display: grid;
 
-            justify-content: space-between;
+            grid-template-columns:
+                180px 1fr;
 
             gap: 30px;
 
-            padding: 15px 0;
+            padding:
+                20px 25px;
 
             border-bottom:
-                1px solid rgba(0, 212, 255, 0.08);
+                1px solid rgba(255,255,255,0.07);
         }
 
         .info-row:last-child {
             border-bottom: none;
         }
 
-        .info-row span:first-child {
-            color: #64748B;
+        .info-key {
+            color: #626e80;
 
-            font-size: 11px;
+            font-size: 9px;
+            font-weight: 900;
 
             letter-spacing: 2px;
         }
 
-        .info-row span:last-child {
-            color: #D1D5DB;
+        .info-value {
+            color: #d6dee8;
 
             font-size: 13px;
-
-            text-align: right;
         }
 
-        /* ============================= */
-        /* FOOTER                        */
-        /* ============================= */
 
-        footer {
+        /* =========================================================
+           CTA
+        ========================================================= */
+
+        .cta {
+            position: relative;
+
+            padding:
+                100px 40px;
+
             text-align: center;
 
-            padding: 70px 20px;
+            border:
+                1px solid rgba(124,58,237,0.25);
 
-            border-top:
-                1px solid rgba(0, 212, 255, 0.12);
+            background:
+                radial-gradient(
+                    circle at center,
+                    rgba(124,58,237,0.1),
+                    rgba(10,13,20,0.9) 65%
+                );
+
+            overflow: hidden;
         }
 
-        footer p:first-child {
-            color: #00D4FF;
+        .cta::before,
+        .cta::after {
+            content: "";
 
-            font-size: 16px;
+            position: absolute;
+
+            width: 200px;
+            height: 1px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    #7c3aed,
+                    transparent
+                );
+        }
+
+        .cta::before {
+            top: 0;
+            left: 10%;
+        }
+
+        .cta::after {
+            bottom: 0;
+            right: 10%;
+        }
+
+        .cta h2 {
+            color: #ffffff;
+
+            font-size:
+                clamp(32px, 5vw, 60px);
+
+            letter-spacing: -2px;
+
+            margin-bottom: 15px;
+        }
+
+        .cta p {
+            max-width: 650px;
+
+            margin:
+                0 auto 30px;
+
+            color: #8994a4;
+
+            font-size: 14px;
+        }
+
+
+        /* =========================================================
+           FOOTER
+        ========================================================= */
+
+        footer {
+            padding:
+                70px 0;
+
+            border-top:
+                1px solid rgba(255,255,255,0.07);
+        }
+
+        .footer-inner {
+            display: flex;
+
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 25px;
+        }
+
+        .footer-brand {
+            color: #ffffff;
+
+            font-size: 15px;
+            font-weight: 900;
 
             letter-spacing: 4px;
         }
 
-        footer p:last-child {
-            color: #64748B;
+        .footer-text {
+            color: #596577;
 
-            font-size: 11px;
+            font-size: 10px;
 
-            letter-spacing: 2px;
+            letter-spacing: 1.5px;
 
-            margin-top: 10px;
+            text-align: right;
         }
 
-        /* ============================= */
-        /* MOBILE                        */
-        /* ============================= */
 
-        @media (max-width: 700px) {
+        /* =========================================================
+           RESPONSIVE
+        ========================================================= */
 
-            .hero {
-                min-height: 75vh;
+        @media (max-width: 900px) {
+
+            .hero-stats {
+                grid-template-columns:
+                    repeat(2, 1fr);
             }
 
-            .hero h1 {
-                letter-spacing: 5px;
+            .stat:nth-child(2) {
+                border-right: none;
             }
 
-            .features {
+            .stat:nth-child(-n+2) {
+                border-bottom:
+                    1px solid rgba(255,255,255,0.07);
+            }
+
+            .overview-grid,
+            .split-section {
                 grid-template-columns: 1fr;
             }
 
-            .info-row {
-                flex-direction: column;
-
-                gap: 5px;
+            .systems {
+                grid-template-columns:
+                    repeat(2, 1fr);
             }
 
-            .info-row span:last-child {
-                text-align: left;
+            .process {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            .process-step:nth-child(2) {
+                border-right: none;
+            }
+
+            .process-step:nth-child(-n+2) {
+                border-bottom:
+                    1px solid rgba(255,255,255,0.08);
+            }
+
+        }
+
+
+        @media (max-width: 700px) {
+
+            .nav-inner {
+                min-height: 64px;
+            }
+
+            .nav-links {
+                gap: 10px;
+            }
+
+            .nav-links a:not(.nav-back) {
+                display: none;
+            }
+
+            .hero {
+                min-height: auto;
+
+                padding:
+                    140px 0 80px;
+            }
+
+            .hero h1 {
+                letter-spacing:
+                    -3px;
+            }
+
+            .hero-stats {
+                margin-top: 50px;
             }
 
             section {
-                padding: 75px 6%;
+                padding:
+                    80px 0;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .systems {
+                grid-template-columns: 1fr;
+            }
+
+            .process {
+                grid-template-columns: 1fr;
+            }
+
+            .process-step {
+                border-right: none !important;
+
+                border-bottom:
+                    1px solid rgba(255,255,255,0.08);
+            }
+
+            .process-step:last-child {
+                border-bottom: none;
+            }
+
+            .overview-main {
+                padding: 28px;
+            }
+
+            .info-row {
+                grid-template-columns: 1fr;
+                gap: 6px;
+            }
+
+            .cta {
+                padding:
+                    70px 25px;
+            }
+
+            .footer-inner {
+                flex-direction: column;
+
+                align-items: flex-start;
+            }
+
+            .footer-text {
+                text-align: left;
+            }
+
+        }
+
+
+        @media (max-width: 450px) {
+
+            .hero-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .stat,
+            .stat:nth-child(2) {
+                border-right: none;
+                border-bottom:
+                    1px solid rgba(255,255,255,0.07);
+            }
+
+            .stat:last-child {
+                border-bottom: none;
+            }
+
+            .hero h1 {
+                font-size: 58px;
             }
 
         }
@@ -476,313 +1238,1225 @@
 <body>
 
 
-    <!-- ============================= -->
-    <!-- NAVIGATION                    -->
-    <!-- ============================= -->
+<!-- =========================================================
+     NAVIGATION
+========================================================= -->
 
-    <nav>
+<nav>
+
+    <div class="nav-inner">
 
         <a href="index.html" class="logo">
+
+            <span class="logo-mark"></span>
+
             MEL
+
         </a>
 
-        <a href="index.html">
-            ← BACK TO PORTFOLIO
-        </a>
+        <div class="nav-links">
 
-    </nav>
+            <a href="#overview">
+                OVERVIEW
+            </a>
+
+            <a href="#systems">
+                SYSTEMS
+            </a>
+
+            <a href="#development">
+                DEVELOPMENT
+            </a>
+
+            <a href="index.html" class="nav-back">
+                ← PORTFOLIO
+            </a>
+
+        </div>
+
+    </div>
+
+</nav>
 
 
-    <!-- ============================= -->
-    <!-- HERO                          -->
-    <!-- ============================= -->
 
-    <header class="hero">
+<!-- =========================================================
+     HERO
+========================================================= -->
+
+<header class="hero">
+
+    <div class="container">
 
         <div class="hero-content">
 
-            <div class="prototype">
-                PROTOTYPE 01 // GAME PROJECT
+            <div class="hero-meta">
+
+                <span>
+                    PROJECT 01
+                </span>
+
+                <div class="hero-line"></div>
+
+                <span>
+                    UNITY / C#
+                </span>
+
             </div>
 
+
             <h1>
-                GLITCH RUNNER
+
+                GLITCH
+                <br>
+
+                <span>RUNNER</span>
+
             </h1>
 
-            <h2>
-                UNITY &nbsp;•&nbsp; C#
-            </h2>
+
+            <div class="hero-subtitle">
+
+                <div class="tag accent">
+                    GAMEPLAY PROGRAMMING
+                </div>
+
+                <div class="tag">
+                    PLATFORMER
+                </div>
+
+                <div class="tag">
+                    RHYTHM
+                </div>
+
+                <div class="tag">
+                    AUDIO REACTIVE
+                </div>
+
+            </div>
+
 
             <p class="hero-description">
 
-                A gameplay prototype focused on responsive
-                movement, interactive mechanics and creating
-                an engaging playable experience.
+                <strong>Glitch Runner</strong> is a rage-bait platforming
+                prototype built around precision movement, rhythm-driven
+                gameplay and deliberately frustrating level design.
+
+                The project combines <strong>Unity and C# programming</strong>
+                with extensive audio work, reactive environments and
+                interactive 3D systems to create a game where the world
+                itself becomes part of the challenge.
 
             </p>
 
+
             <div class="buttons">
 
-                <!-- WE WILL ADD THE DOWNLOAD LINK LATER -->
-
-                <a href="#about" class="button primary">
-                    ABOUT THE GAME
+                <a
+                    href="#overview"
+                    class="button primary"
+                >
+                    EXPLORE PROJECT ↓
                 </a>
 
-                <a href="index.html" class="button">
+                <a
+                    href="#systems"
+                    class="button"
+                >
+                    TECHNICAL SYSTEMS
+                </a>
+
+                <a
+                    href="index.html"
+                    class="button"
+                >
                     ← PORTFOLIO
                 </a>
 
             </div>
 
+
+            <div class="hero-stats">
+
+                <div class="stat">
+
+                    <strong>
+                        UNITY
+                    </strong>
+
+                    <span>
+                        ENGINE
+                    </span>
+
+                </div>
+
+
+                <div class="stat">
+
+                    <strong>
+                        C#
+                    </strong>
+
+                    <span>
+                        PROGRAMMING
+                    </span>
+
+                </div>
+
+
+                <div class="stat">
+
+                    <strong>
+                        RHYTHM
+                    </strong>
+
+                    <span>
+                        GAMEPLAY SYSTEM
+                    </span>
+
+                </div>
+
+
+                <div class="stat">
+
+                    <strong>
+                        3D
+                    </strong>
+
+                    <span>
+                        INTERACTIVE WORLD
+                    </span>
+
+                </div>
+
+            </div>
+
         </div>
 
-    </header>
+    </div>
+
+</header>
 
 
-    <!-- ============================= -->
-    <!-- ABOUT THE GAME                -->
-    <!-- ============================= -->
 
-    <section id="about">
+<!-- =========================================================
+     OVERVIEW
+========================================================= -->
 
-        <div class="label">
-            01 // OVERVIEW
+<section id="overview">
+
+    <div class="container">
+
+        <div class="section-header">
+
+            <div class="section-label">
+                01 // PROJECT OVERVIEW
+            </div>
+
+            <h2 class="section-title">
+                BUILT TO FRUSTRATE.
+                <br>
+                DESIGNED TO REACT.
+            </h2>
+
+            <p class="section-description">
+
+                Glitch Runner started as a gameplay prototype and
+                developed into an experiment in player frustration,
+                timing, audio and environmental interaction.
+
+            </p>
+
         </div>
 
-        <h3>
-            ABOUT THE GAME
-        </h3>
 
-        <p class="text">
-
-            Glitch Runner is a gameplay prototype developed
-            in Unity and C#.
-
-            <br><br>
-
-            The project focuses on creating responsive player
-            movement, gameplay mechanics and an enjoyable
-            gameplay loop while experimenting with different
-            ideas during development.
-
-            <br><br>
-
-            This project is part of my ongoing development as
-            a game programmer and designer.
-
-        </p>
-
-    </section>
+        <div class="overview-grid">
 
 
-    <!-- ============================= -->
-    <!-- FEATURES                      -->
-    <!-- ============================= -->
+            <div class="overview-main">
 
-    <section>
+                <p>
 
-        <div class="label">
-            02 // FEATURES
-        </div>
+                    The core concept is a <strong>rage-bait platformer</strong>
+                    where failure is deliberately part of the experience.
+                    The player is required to learn the level, understand
+                    its timing and react quickly to obstacles while the
+                    game continually challenges their expectations.
 
-        <h3>
-            CORE SYSTEMS
-        </h3>
+                </p>
 
-        <div class="features">
+                <p>
 
-            <div class="feature">
+                    A major focus of the project was connecting the
+                    gameplay to <strong>music and rhythm</strong>.
+                    The environment and gameplay systems were designed
+                    around the audio rather than treating music as
+                    something separate from the game.
 
-                <strong>
-                    MOVEMENT
-                </strong>
+                </p>
 
-                <span>
-                    Responsive player movement
-                    and controls.
-                </span>
+                <p>
+
+                    This allowed me to experiment with how sound can
+                    influence the player's perception of movement,
+                    timing and progression, while also using visual
+                    effects and environmental changes to make the
+                    game world feel responsive.
+
+                </p>
 
             </div>
 
 
-            <div class="feature">
+            <div class="overview-side">
 
-                <strong>
-                    GAMEPLAY
-                </strong>
+                <div class="side-title">
+                    PROJECT PROFILE
+                </div>
 
-                <span>
-                    Interactive mechanics designed
+
+                <div class="side-item">
+
+                    <span>
+                        ENGINE
+                    </span>
+
+                    <strong>
+                        Unity
+                    </strong>
+
+                </div>
+
+
+                <div class="side-item">
+
+                    <span>
+                        LANGUAGE
+                    </span>
+
+                    <strong>
+                        C#
+                    </strong>
+
+                </div>
+
+
+                <div class="side-item">
+
+                    <span>
+                        GENRE
+                    </span>
+
+                    <strong>
+                        Rage Platformer / Rhythm
+                    </strong>
+
+                </div>
+
+
+                <div class="side-item">
+
+                    <span>
+                        DEVELOPMENT
+                    </span>
+
+                    <strong>
+                        Solo Project
+                    </strong>
+
+                </div>
+
+
+                <div class="side-item">
+
+                    <span>
+                        STATUS
+                    </span>
+
+                    <strong>
+                        Prototype
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     CORE GAMEPLAY
+========================================================= -->
+
+<section>
+
+    <div class="container">
+
+        <div class="section-header">
+
+            <div class="section-label">
+                02 // GAMEPLAY
+            </div>
+
+            <h2 class="section-title">
+                THE GAMEPLAY LOOP
+            </h2>
+
+            <p class="section-description">
+
+                The prototype combines difficult platforming with
+                timing-based gameplay and environmental interaction.
+                The goal was to make movement feel simple to learn
+                while creating a much harder experience to master.
+
+            </p>
+
+        </div>
+
+
+        <div class="feature-grid">
+
+
+            <div class="feature-card">
+
+                <div class="feature-number">
+                    SYSTEM 01
+                </div>
+
+                <h3>
+                    RAGE-BAIT PLATFORMING
+                </h3>
+
+                <p>
+
+                    Precision platforming designed around failure,
+                    retries and learning. Obstacles and level layouts
+                    are structured to create moments where the player
+                    knows exactly why they failed and immediately
+                    wants to try again.
+
+                </p>
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <div class="feature-number">
+                    SYSTEM 02
+                </div>
+
+                <h3>
+                    MUSIC-DRIVEN GAMEPLAY
+                </h3>
+
+                <p>
+
+                    Gameplay and environmental behaviour are connected
+                    to the music, creating rhythm-based moments where
+                    timing and audio become important parts of the
+                    player's interaction with the level.
+
+                </p>
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <div class="feature-number">
+                    SYSTEM 03
+                </div>
+
+                <h3>
+                    REACTIVE ENVIRONMENT
+                </h3>
+
+                <p>
+
+                    The stage responds to the soundtrack through
+                    movement, visual changes and gameplay events,
+                    helping create the feeling that the level itself
+                    is reacting to the player and music.
+
+                </p>
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <div class="feature-number">
+                    SYSTEM 04
+                </div>
+
+                <h3>
+                    PLAYER MOVEMENT
+                </h3>
+
+                <p>
+
+                    Responsive movement and camera controls provide
+                    the foundation for the platforming systems, with
+                    the controls designed to remain predictable even
+                    when the level becomes increasingly difficult.
+
+                </p>
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <div class="feature-number">
+                    SYSTEM 05
+                </div>
+
+                <h3>
+                    INTERACTIVE OBJECTS
+                </h3>
+
+                <p>
+
+                    Interactive objects are used to turn the environment
+                    into part of the gameplay. Objects can be approached,
+                    manipulated and repositioned by the player.
+
+                </p>
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <div class="feature-number">
+                    SYSTEM 06
+                </div>
+
+                <h3>
+                    AUDIO & FEEDBACK
+                </h3>
+
+                <p>
+
+                    Extensive audio implementation reinforces movement,
+                    interactions and gameplay events while helping the
+                    player understand what is happening around them.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     WORLD / INTERACTION
+========================================================= -->
+
+<section>
+
+    <div class="container">
+
+        <div class="split-section">
+
+            <div>
+
+                <div class="section-label">
+                    03 // INTERACTION
+                </div>
+
+                <div class="large-statement">
+
+                    THE WORLD ISN'T
+                    <span>
+                        STATIC.
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="split-copy">
+
+                <p>
+
+                    One of the technical experiments in the project
+                    involved building a world containing <strong>floating
+                    barrels and interactive objects</strong>.
+
+                    Rather than being purely decorative, these objects
+                    can be picked up and moved around by the player.
+
+                </p>
+
+                <p>
+
+                    The player can navigate the environment using
+                    <strong>WASD movement and camera controls</strong>,
+                    approach objects and manipulate them within the
+                    world. This provided an opportunity to experiment
+                    with object interaction, movement, physics and
+                    player-to-environment relationships.
+
+                </p>
+
+                <p>
+
+                    The system also helped explore how relatively simple
+                    interactions can make a level feel more dynamic
+                    and responsive.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     AUDIO / RHYTHM
+========================================================= -->
+
+<section>
+
+    <div class="container">
+
+        <div class="section-header">
+
+            <div class="section-label">
+                04 // AUDIO & RHYTHM
+            </div>
+
+            <h2 class="section-title">
+                SOUND BECOMES GAMEPLAY
+            </h2>
+
+            <p class="section-description">
+
+                Audio was treated as a core gameplay component rather
+                than simply background music. The project explores how
+                rhythm, sound effects and visual reactions can work
+                together to create stronger feedback.
+
+            </p>
+
+        </div>
+
+
+        <div class="systems">
+
+
+            <div class="system">
+
+                <h4>
+                    RHYTHM EVENTS
+                </h4>
+
+                <p>
+                    Gameplay events can be structured around
+                    musical timing and rhythm.
+                </p>
+
+            </div>
+
+
+            <div class="system">
+
+                <h4>
+                    AUDIO FEEDBACK
+                </h4>
+
+                <p>
+                    Sounds reinforce movement, interactions
+                    and important gameplay events.
+                </p>
+
+            </div>
+
+
+            <div class="system">
+
+                <h4>
+                    MUSIC REACTIVITY
+                </h4>
+
+                <p>
+                    The environment can react to changes in
+                    the soundtrack.
+                </p>
+
+            </div>
+
+
+            <div class="system">
+
+                <h4>
+                    VISUAL SYNCHRONISATION
+                </h4>
+
+                <p>
+                    Visual elements are designed to work with
+                    the rhythm and energy of the music.
+                </p>
+
+            </div>
+
+
+            <div class="system">
+
+                <h4>
+                    PLAYER TIMING
+                </h4>
+
+                <p>
+                    Audio gives the player additional cues
+                    for timing movement and actions.
+                </p>
+
+            </div>
+
+
+            <div class="system">
+
+                <h4>
+                    ATMOSPHERE
+                </h4>
+
+                <p>
+                    Sound design helps establish the identity
+                    and energy of the game world.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     TECHNICAL SYSTEMS
+========================================================= -->
+
+<section id="systems">
+
+    <div class="container">
+
+        <div class="section-header">
+
+            <div class="section-label">
+                05 // PROGRAMMING
+            </div>
+
+            <h2 class="section-title">
+                TECHNICAL SYSTEMS
+            </h2>
+
+            <p class="section-description">
+
+                The project gave me practical experience building
+                gameplay systems in C# and connecting individual
+                systems together into a playable experience.
+
+            </p>
+
+        </div>
+
+
+        <div class="systems">
+
+
+            <div class="system">
+
+                <h4>
+                    C# GAMEPLAY CODE
+                </h4>
+
+                <p>
+                    Gameplay logic and interactive behaviour
+                    implemented through C# scripts.
+                </p>
+
+            </div>
+
+
+            <div class="system">
+
+                <h4>
+                    PLAYER CONTROLLER
+                </h4>
+
+                <p>
+                    WASD movement, player input and responsive
+                    camera interaction.
+                </p>
+
+            </div>
+
+
+            <div class="system">
+
+                <h4>
+                    CAMERA SYSTEM
+                </h4>
+
+                <p>
+                    Camera movement designed to provide clear
+                    visibility during gameplay.
+                </p>
+
+            </div>
+
+
+            <div class="system">
+
+                <h4>
+                    OBJECT INTERACTION
+                </h4>
+
+                <p>
+                    Interactive objects that can be picked up,
+                    moved and repositioned in the environment.
+                </p>
+
+            </div>
+
+
+            <div class="system">
+
+                <h4>
+                    ENVIRONMENT SYSTEMS
+                </h4>
+
+                <p>
+                    Level elements and world behaviour designed
                     around the gameplay loop.
-                </span>
+                </p>
 
             </div>
 
 
-            <div class="feature">
+            <div class="system">
 
-                <strong>
-                    LEVEL DESIGN
-                </strong>
+                <h4>
+                    AUDIO SYSTEMS
+                </h4>
+
+                <p>
+                    Music, sound effects and audio-driven
+                    gameplay feedback.
+                </p>
+
+            </div>
+
+
+            <div class="system">
+
+                <h4>
+                    GAMEPLAY FEEDBACK
+                </h4>
+
+                <p>
+                    Visual and audio feedback designed to make
+                    player actions feel immediate and readable.
+                </p>
+
+            </div>
+
+
+            <div class="system">
+
+                <h4>
+                    LEVEL PROTOTYPING
+                </h4>
+
+                <p>
+                    Rapidly building and testing layouts to
+                    evaluate mechanics and difficulty.
+                </p>
+
+            </div>
+
+
+            <div class="system">
+
+                <h4>
+                    ITERATIVE DESIGN
+                </h4>
+
+                <p>
+                    Testing, adjusting and refining mechanics
+                    based on how the prototype plays.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     DEVELOPMENT PROCESS
+========================================================= -->
+
+<section id="development">
+
+    <div class="container">
+
+        <div class="section-header">
+
+            <div class="section-label">
+                06 // DEVELOPMENT PROCESS
+            </div>
+
+            <h2 class="section-title">
+                FROM IDEA TO PLAYABLE SYSTEM
+            </h2>
+
+            <p class="section-description">
+
+                The project represents the kind of iterative
+                development process I use when turning an initial
+                idea into a playable prototype.
+
+            </p>
+
+        </div>
+
+
+        <div class="process">
+
+
+            <div class="process-step">
 
                 <span>
-                    Playable environments built
-                    around the game's mechanics.
+                    01 / IDEA
                 </span>
+
+                <h4>
+                    CONCEPT
+                </h4>
+
+                <p>
+                    Establish the core gameplay idea,
+                    player experience and mechanics.
+                </p>
 
             </div>
 
 
+            <div class="process-step">
+
+                <span>
+                    02 / BUILD
+                </span>
+
+                <h4>
+                    PROTOTYPE
+                </h4>
+
+                <p>
+                    Build the core systems and create
+                    a playable version quickly.
+                </p>
+
+            </div>
+
+
+            <div class="process-step">
+
+                <span>
+                    03 / TEST
+                </span>
+
+                <h4>
+                    ITERATE
+                </h4>
+
+                <p>
+                    Playtest mechanics and identify
+                    problems with movement and difficulty.
+                </p>
+
+            </div>
+
+
+            <div class="process-step">
+
+                <span>
+                    04 / REFINE
+                </span>
+
+                <h4>
+                    POLISH
+                </h4>
+
+                <p>
+                    Improve audio, visuals, feedback,
+                    interaction and overall presentation.
+                </p>
+
+            </div>
+
         </div>
 
-    </section>
+    </div>
+
+</section>
 
 
-    <!-- ============================= -->
-    <!-- DEVELOPMENT                   -->
-    <!-- ============================= -->
 
-    <section>
+<!-- =========================================================
+     PROJECT INFORMATION
+========================================================= -->
 
-        <div class="label">
-            03 // DEVELOPMENT
+<section>
+
+    <div class="container">
+
+        <div class="section-header">
+
+            <div class="section-label">
+                07 // SPECIFICATION
+            </div>
+
+            <h2 class="section-title">
+                PROJECT DETAILS
+            </h2>
+
         </div>
 
-        <h3>
-            PROJECT INFO
-        </h3>
 
         <div class="info-box">
 
+
             <div class="info-row">
 
-                <span>
+                <div class="info-key">
+                    PROJECT
+                </div>
+
+                <div class="info-value">
+                    Glitch Runner
+                </div>
+
+            </div>
+
+
+            <div class="info-row">
+
+                <div class="info-key">
                     ENGINE
-                </span>
+                </div>
 
-                <span>
+                <div class="info-value">
                     Unity
-                </span>
+                </div>
 
             </div>
 
 
             <div class="info-row">
 
-                <span>
+                <div class="info-key">
                     LANGUAGE
-                </span>
+                </div>
 
-                <span>
+                <div class="info-value">
                     C#
-                </span>
+                </div>
 
             </div>
 
 
             <div class="info-row">
 
-                <span>
-                    TYPE
-                </span>
+                <div class="info-key">
+                    GENRE
+                </div>
 
-                <span>
-                    Gameplay Prototype
-                </span>
+                <div class="info-value">
+                    Rage-bait Platformer / Rhythm Gameplay
+                </div>
 
             </div>
 
 
             <div class="info-row">
 
-                <span>
+                <div class="info-key">
+                    CORE FOCUS
+                </div>
+
+                <div class="info-value">
+                    Gameplay Programming, Level Design, Audio,
+                    Interaction and Player Experience
+                </div>
+
+            </div>
+
+
+            <div class="info-row">
+
+                <div class="info-key">
+                    INPUT
+                </div>
+
+                <div class="info-value">
+                    Keyboard / WASD / Camera Controls
+                </div>
+
+            </div>
+
+
+            <div class="info-row">
+
+                <div class="info-key">
+                    DEVELOPMENT
+                </div>
+
+                <div class="info-value">
+                    Independent Programming & Design Project
+                </div>
+
+            </div>
+
+
+            <div class="info-row">
+
+                <div class="info-key">
                     STATUS
-                </span>
+                </div>
 
-                <span>
+                <div class="info-value">
                     Prototype
-                </span>
-
-            </div>
-
-
-            <div class="info-row">
-
-                <span>
-                    DEVELOPER
-                </span>
-
-                <span>
-                    MEL
-                </span>
+                </div>
 
             </div>
 
         </div>
 
-    </section>
+    </div>
+
+</section>
 
 
-    <!-- ============================= -->
-    <!-- DOWNLOAD                      -->
-    <!-- ============================= -->
 
-    <section>
+<!-- =========================================================
+     PLAY
+========================================================= -->
 
-        <div class="label">
-            04 // PLAY
+<section>
+
+    <div class="container">
+
+        <div class="cta">
+
+            <div class="section-label" style="justify-content:center;">
+                08 // BUILD
+            </div>
+
+            <h2>
+                PLAY GLITCH RUNNER
+            </h2>
+
+            <p>
+
+                Explore the prototype and experience the
+                platforming, rhythm-driven gameplay and
+                interactive systems for yourself.
+
+            </p>
+
+            <div class="buttons" style="justify-content:center;">
+
+                <a
+                    href="https://github.com/MelDevvv/meldevvv.github.io/releases/download/glitch-runner-v1.0/Glitch_Runner.zip"
+                    class="button primary"
+                >
+                    DOWNLOAD GLITCH RUNNER ↓
+                </a>
+
+                <a
+                    href="index.html"
+                    class="button"
+                >
+                    VIEW ALL PROJECTS →
+                </a>
+
+            </div>
+
         </div>
 
-        <h3>
-            GET THE GAME
-        </h3>
+    </div>
 
-        <p class="text">
+</section>
 
-            The Windows build will be available here.
 
-            <br><br>
 
-            Download the game, extract the ZIP file and
-            launch the executable to play.
+<!-- =========================================================
+     FOOTER
+========================================================= -->
 
-        </p>
+<footer>
 
-        <div class="buttons">
+    <div class="container">
 
-            <!-- WE WILL CONNECT THIS AFTER UPLOADING THE GAME -->
+        <div class="footer-inner">
 
-            <a href="https://github.com/MelDevvv/meldevvv.github.io/releases/download/glitch-runner-v1.0/Glitch_Runner.zip" class="button primary">
-                DOWNLOAD GLITCH RUNNER
-            </a>
+            <div class="footer-brand">
+                MEL
+            </div>
+
+            <div class="footer-text">
+
+                PROGRAMMER
+                &nbsp;•&nbsp;
+                GAME DESIGN
+                &nbsp;•&nbsp;
+                C++
+                &nbsp;•&nbsp;
+                C#
+                &nbsp;•&nbsp;
+                UNITY
+                &nbsp;•&nbsp;
+                OPENGL
+
+                <br>
+
+                GLITCH RUNNER / PROJECT 01
+
+            </div>
 
         </div>
 
-    </section>
+    </div>
 
-
-    <!-- ============================= -->
-    <!-- FOOTER                        -->
-    <!-- ============================= -->
-
-    <footer>
-
-        <p>
-            DESIGN. PROGRAM. ITERATE.
-        </p>
-
-        <p>
-            MEL // GAME PROGRAMMER &amp; GAME DESIGNER
-        </p>
-
-        <br>
-
-        <a href="index.html" class="button">
-            ← BACK TO PORTFOLIO
-        </a>
-
-    </footer>
+</footer>
 
 
 </body>
