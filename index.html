@@ -6,7 +6,7 @@
 
     <title>MEL // Game Programmer & Designer</title>
 
-    <meta name="description" content="MEL — Game Programmer and Game Designer. Creating gameplay systems, interactive experiences and game prototypes.">
+    <meta name="description" content="MEL — Game Programmer and Game Designer. Creating gameplay systems, interactive experiences, game prototypes and graphics programming projects.">
 
     <style>
 
@@ -297,6 +297,28 @@
             margin-bottom: 25px;
         }
 
+        .project-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .project-buttons .button {
+            padding: 12px 18px;
+        }
+
+        .button.download {
+            border-color: #183442;
+            color: #7DD3FC;
+            background: #071018;
+        }
+
+        .button.download:hover {
+            border-color: #00D4FF;
+            background: #00D4FF;
+            color: #050B14;
+        }
+
         /* ============================= */
         /* ABOUT                         */
         /* ============================= */
@@ -386,6 +408,15 @@
             section {
                 padding: 80px 6%;
             }
+
+            .project-buttons {
+                flex-direction: column;
+            }
+
+            .project-buttons .button {
+                text-align: center;
+            }
+
         }
 
     </style>
@@ -461,12 +492,12 @@
         </div>
 
         <h2 class="section-title">
-            MY GAMES
+            MY PROJECTS
         </h2>
 
         <p class="section-description">
-            A collection of my current game development projects,
-            prototypes and experiments.
+            A collection of my game development projects,
+            prototypes and graphics programming work.
         </p>
 
 
@@ -497,9 +528,13 @@
                         creating an engaging gameplay experience.
                     </p>
 
-                    <a href="glitch-runner.html" class="button">
-                        VIEW PROJECT →
-                    </a>
+                    <div class="project-buttons">
+
+                        <a href="glitch-runner.html" class="button">
+                            VIEW PROJECT →
+                        </a>
+
+                    </div>
 
                 </div>
 
@@ -530,9 +565,55 @@
                         and level design.
                     </p>
 
-                    <a href="dune.html" class="button">
-                        VIEW PROJECT →
-                    </a>
+                    <div class="project-buttons">
+
+                        <a href="dune.html" class="button">
+                            VIEW PROJECT →
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <!-- GRAPHICS PROGRAMMING -->
+
+            <article class="project">
+
+                <div class="project-content">
+
+                    <div class="project-number">
+                        PROJECT 03
+                    </div>
+
+                    <h3>
+                        GRAPHICS PROGRAMMING
+                    </h3>
+
+                    <div class="project-tech">
+                        C++ &nbsp;•&nbsp; OPENGL
+                    </div>
+
+                    <p>
+                        A custom graphics programming project exploring
+                        real-time rendering, 3D environments, camera
+                        systems, transformations, lighting and textures.
+                    </p>
+
+                    <div class="project-buttons">
+
+                        <a href="graphics-programming.html" class="button">
+                            VIEW PROJECT →
+                        </a>
+
+                        <a href="https://github.com/MelDevvv/Graphics_Programming/archive/refs/tags/V1.0.0.zip"
+                           class="button download">
+                            DOWNLOAD →
+                        </a>
+
+                    </div>
 
                 </div>
 
@@ -639,6 +720,8 @@
             <span class="skill">PROTOTYPING</span>
             <span class="skill">REAL-TIME GRAPHICS</span>
             <span class="skill">UNITY DEVELOPMENT</span>
+            <span class="skill">C++ DEVELOPMENT</span>
+            <span class="skill">OPENGL</span>
 
         </div>
 
