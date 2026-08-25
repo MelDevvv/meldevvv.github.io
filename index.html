@@ -913,6 +913,206 @@
 
 
         /* =========================================================
+           DEGREE SKILLS / CURRICULUM
+        ========================================================= */
+
+        .curriculum-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 18px;
+        }
+
+        .curriculum-year {
+            border:
+                1px solid rgba(255,255,255,0.08);
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255,255,255,0.035),
+                    rgba(255,255,255,0.012)
+                );
+
+            padding: 30px;
+
+            position: relative;
+        }
+
+        .curriculum-year::before {
+            content: "";
+
+            position: absolute;
+
+            top: -1px;
+            left: 25px;
+
+            width: 55px;
+            height: 2px;
+
+            background: #818cf8;
+        }
+
+        .curriculum-year-header {
+            display: flex;
+
+            align-items: flex-end;
+
+            justify-content: space-between;
+
+            gap: 20px;
+
+            padding-bottom: 20px;
+
+            margin-bottom: 20px;
+
+            border-bottom:
+                1px solid rgba(255,255,255,0.07);
+        }
+
+        .curriculum-year-header h3 {
+            color: #ffffff;
+
+            font-size: 22px;
+
+            letter-spacing: -0.5px;
+        }
+
+        .curriculum-year-header span {
+            color: #818cf8;
+
+            font-family:
+                "Courier New",
+                Courier,
+                monospace;
+
+            font-size: 9px;
+
+            letter-spacing: 2px;
+
+            white-space: nowrap;
+        }
+
+        .module {
+            padding: 17px 0;
+
+            border-bottom:
+                1px solid rgba(255,255,255,0.05);
+        }
+
+        .module:last-child {
+            border-bottom: none;
+        }
+
+        .module-name {
+            color: #ffffff;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            letter-spacing: 0.3px;
+
+            margin-bottom: 6px;
+        }
+
+        .module-description {
+            color: #727985;
+
+            font-size: 11px;
+
+            line-height: 1.75;
+        }
+
+        .module-type {
+            display: inline-block;
+
+            margin-top: 8px;
+
+            color: #818cf8;
+
+            font-family:
+                "Courier New",
+                Courier,
+                monospace;
+
+            font-size: 8px;
+
+            letter-spacing: 1.5px;
+
+            text-transform: uppercase;
+        }
+
+        .curriculum-note {
+            margin-top: 18px;
+
+            padding: 22px 25px;
+
+            border-left:
+                2px solid #818cf8;
+
+            background:
+                rgba(129,140,248,0.035);
+
+            color: #858c98;
+
+            font-size: 11px;
+
+            line-height: 1.8;
+        }
+
+        .skills-summary {
+            margin-top: 40px;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 1px;
+
+            background:
+                rgba(255,255,255,0.08);
+
+            border:
+                1px solid rgba(255,255,255,0.08);
+        }
+
+        .skills-summary-item {
+            padding: 25px;
+
+            background: #080a0e;
+        }
+
+        .skills-summary-item span {
+            display: block;
+
+            color: #818cf8;
+
+            font-family:
+                "Courier New",
+                Courier,
+                monospace;
+
+            font-size: 9px;
+
+            letter-spacing: 2px;
+
+            margin-bottom: 10px;
+        }
+
+        .skills-summary-item strong {
+            color: #ffffff;
+
+            font-size: 13px;
+
+            font-weight: 600;
+        }
+
+
+        /* =========================================================
            WHAT I DO
         ========================================================= */
 
@@ -1192,6 +1392,14 @@
                 grid-template-columns: 1fr;
             }
 
+            .curriculum-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .skills-summary {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
             .focus-grid {
                 grid-template-columns: 1fr;
             }
@@ -1267,6 +1475,10 @@
                 padding: 25px;
             }
 
+            .skills-summary {
+                grid-template-columns: 1fr;
+            }
+
             .footer-bottom {
                 flex-direction: column;
             }
@@ -1300,6 +1512,7 @@
                 <a href="#about">ABOUT</a>
             </li>
 
+            <!-- FIXED: This now points to a real section -->
             <li>
                 <a href="#skills">SKILLS</a>
             </li>
@@ -1392,75 +1605,33 @@
                     </div>
 
                     <div class="panel-item">
-
-                        <span>
-                            Role
-                        </span>
-
-                        <span>
-                            Programmer
-                        </span>
-
+                        <span>Role</span>
+                        <span>Programmer</span>
                     </div>
 
                     <div class="panel-item">
-
-                        <span>
-                            Specialism
-                        </span>
-
-                        <span>
-                            Games Design &amp; Programming
-                        </span>
-
+                        <span>Specialism</span>
+                        <span>Games Design &amp; Programming</span>
                     </div>
 
                     <div class="panel-item">
-
-                        <span>
-                            Primary
-                        </span>
-
-                        <span>
-                            C# / C++
-                        </span>
-
+                        <span>Primary</span>
+                        <span>C# / C++</span>
                     </div>
 
                     <div class="panel-item">
-
-                        <span>
-                            Engines
-                        </span>
-
-                        <span>
-                            Unity / Unreal
-                        </span>
-
+                        <span>Engines</span>
+                        <span>Unity / Unreal</span>
                     </div>
 
                     <div class="panel-item">
-
-                        <span>
-                            Graphics
-                        </span>
-
-                        <span>
-                            OpenGL
-                        </span>
-
+                        <span>Graphics</span>
+                        <span>OpenGL</span>
                     </div>
 
                     <div class="panel-item">
-
-                        <span>
-                            Focus
-                        </span>
-
-                        <span>
-                            Interactive Systems
-                        </span>
-
+                        <span>Focus</span>
+                        <span>Interactive Systems</span>
                     </div>
 
                 </div>
@@ -1565,25 +1736,11 @@
 
                         <div class="project-tags">
 
-                            <span class="project-tag">
-                                PLATFORMING
-                            </span>
-
-                            <span class="project-tag">
-                                RHYTHM SYSTEMS
-                            </span>
-
-                            <span class="project-tag">
-                                AUDIO REACTIVE
-                            </span>
-
-                            <span class="project-tag">
-                                GAME FEEL
-                            </span>
-
-                            <span class="project-tag">
-                                C#
-                            </span>
+                            <span class="project-tag">PLATFORMING</span>
+                            <span class="project-tag">RHYTHM SYSTEMS</span>
+                            <span class="project-tag">AUDIO REACTIVE</span>
+                            <span class="project-tag">GAME FEEL</span>
+                            <span class="project-tag">C#</span>
 
                         </div>
 
@@ -1655,25 +1812,11 @@
 
                         <div class="project-tags">
 
-                            <span class="project-tag">
-                                PROCEDURAL GENERATION
-                            </span>
-
-                            <span class="project-tag">
-                                PLAYER MOVEMENT
-                            </span>
-
-                            <span class="project-tag">
-                                TERRAIN
-                            </span>
-
-                            <span class="project-tag">
-                                HORROR
-                            </span>
-
-                            <span class="project-tag">
-                                C#
-                            </span>
+                            <span class="project-tag">PROCEDURAL GENERATION</span>
+                            <span class="project-tag">PLAYER MOVEMENT</span>
+                            <span class="project-tag">TERRAIN</span>
+                            <span class="project-tag">HORROR</span>
+                            <span class="project-tag">C#</span>
 
                         </div>
 
@@ -1755,29 +1898,12 @@
 
                         <div class="project-tags">
 
-                            <span class="project-tag">
-                                C++
-                            </span>
-
-                            <span class="project-tag">
-                                OPENGL
-                            </span>
-
-                            <span class="project-tag">
-                                3D RENDERING
-                            </span>
-
-                            <span class="project-tag">
-                                CAMERA SYSTEM
-                            </span>
-
-                            <span class="project-tag">
-                                TRANSFORMATIONS
-                            </span>
-
-                            <span class="project-tag">
-                                INTERACTION
-                            </span>
+                            <span class="project-tag">C++</span>
+                            <span class="project-tag">OPENGL</span>
+                            <span class="project-tag">3D RENDERING</span>
+                            <span class="project-tag">CAMERA SYSTEM</span>
+                            <span class="project-tag">TRANSFORMATIONS</span>
+                            <span class="project-tag">INTERACTION</span>
 
                         </div>
 
@@ -1913,35 +2039,16 @@
 
                         <div class="skill-category">
 
-                            <h3>
-                                Programming
-                            </h3>
+                            <h3>Programming</h3>
 
                             <div class="skill-list">
 
-                                <span class="skill">
-                                    C++
-                                </span>
-
-                                <span class="skill">
-                                    C#
-                                </span>
-
-                                <span class="skill">
-                                    Python
-                                </span>
-
-                                <span class="skill">
-                                    OOP
-                                </span>
-
-                                <span class="skill">
-                                    Algorithms
-                                </span>
-
-                                <span class="skill">
-                                    Computational Methods
-                                </span>
+                                <span class="skill">C++</span>
+                                <span class="skill">C#</span>
+                                <span class="skill">Python</span>
+                                <span class="skill">OOP</span>
+                                <span class="skill">Algorithms</span>
+                                <span class="skill">Computational Methods</span>
 
                             </div>
 
@@ -1950,31 +2057,15 @@
 
                         <div class="skill-category">
 
-                            <h3>
-                                Development
-                            </h3>
+                            <h3>Development</h3>
 
                             <div class="skill-list">
 
-                                <span class="skill">
-                                    Unity
-                                </span>
-
-                                <span class="skill">
-                                    Unreal Engine
-                                </span>
-
-                                <span class="skill">
-                                    Git
-                                </span>
-
-                                <span class="skill">
-                                    Game Prototyping
-                                </span>
-
-                                <span class="skill">
-                                    Mechanics
-                                </span>
+                                <span class="skill">Unity</span>
+                                <span class="skill">Unreal Engine</span>
+                                <span class="skill">Git</span>
+                                <span class="skill">Game Prototyping</span>
+                                <span class="skill">Mechanics</span>
 
                             </div>
 
@@ -1983,31 +2074,15 @@
 
                         <div class="skill-category">
 
-                            <h3>
-                                Graphics
-                            </h3>
+                            <h3>Graphics</h3>
 
                             <div class="skill-list">
 
-                                <span class="skill">
-                                    OpenGL
-                                </span>
-
-                                <span class="skill">
-                                    3D Rendering
-                                </span>
-
-                                <span class="skill">
-                                    Cameras
-                                </span>
-
-                                <span class="skill">
-                                    Lighting
-                                </span>
-
-                                <span class="skill">
-                                    Textures
-                                </span>
+                                <span class="skill">OpenGL</span>
+                                <span class="skill">3D Rendering</span>
+                                <span class="skill">Cameras</span>
+                                <span class="skill">Lighting</span>
+                                <span class="skill">Textures</span>
 
                             </div>
 
@@ -2016,31 +2091,15 @@
 
                         <div class="skill-category">
 
-                            <h3>
-                                Design
-                            </h3>
+                            <h3>Design</h3>
 
                             <div class="skill-list">
 
-                                <span class="skill">
-                                    Gameplay Design
-                                </span>
-
-                                <span class="skill">
-                                    Level Design
-                                </span>
-
-                                <span class="skill">
-                                    Game Feel
-                                </span>
-
-                                <span class="skill">
-                                    Audio
-                                </span>
-
-                                <span class="skill">
-                                    Prototyping
-                                </span>
+                                <span class="skill">Gameplay Design</span>
+                                <span class="skill">Level Design</span>
+                                <span class="skill">Game Feel</span>
+                                <span class="skill">Audio</span>
+                                <span class="skill">Prototyping</span>
 
                             </div>
 
@@ -2049,6 +2108,644 @@
                     </div>
 
                 </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         SKILLS / DEGREE CURRICULUM
+         THIS IS THE SECTION THE NAVIGATION NOW OPENS
+    ========================================================= -->
+
+    <section id="skills">
+
+        <div class="container">
+
+            <div class="section-top">
+
+                <div>
+
+                    <div class="section-label">
+                        03 // SKILLS &amp; CURRICULUM
+                    </div>
+
+                    <h2 class="section-title">
+                        SKILLS
+                    </h2>
+
+                </div>
+
+                <p class="section-description">
+
+                    The technical and creative areas covered throughout
+                    the BSc (Hons) Computer Games Design &amp; Programming
+                    degree at Staffordshire University London, from
+                    programming fundamentals and graphics through to
+                    AI, engines, low-level gameplay and major development
+                    projects.
+
+                </p>
+
+            </div>
+
+
+            <div class="curriculum-grid">
+
+
+                <!-- =================================================
+                     YEAR 01
+                ================================================== -->
+
+                <div class="curriculum-year">
+
+                    <div class="curriculum-year-header">
+
+                        <h3>
+                            YEAR 01
+                        </h3>
+
+                        <span>
+                            FOUNDATION
+                        </span>
+
+                    </div>
+
+
+                    <div class="module">
+
+                        <div class="module-name">
+                            Programming Fundamentals
+                        </div>
+
+                        <div class="module-description">
+
+                            Core programming concepts including
+                            data types, conditionals, functions and
+                            object-oriented programming, progressing
+                            towards building a text-based game.
+
+                        </div>
+
+                        <span class="module-type">
+                            Programming
+                        </span>
+
+                    </div>
+
+
+                    <div class="module">
+
+                        <div class="module-name">
+                            C# Scripting For Games Engines
+                        </div>
+
+                        <div class="module-description">
+
+                            C# scripting for interactive gameplay
+                            solutions and technical game development
+                            inside a game-engine environment.
+
+                        </div>
+
+                        <span class="module-type">
+                            C# / Game Engines
+                        </span>
+
+                    </div>
+
+
+                    <div class="module">
+
+                        <div class="module-name">
+                            Computational Methods
+                        </div>
+
+                        <div class="module-description">
+
+                            Computational problem solving and
+                            efficient techniques used to make
+                            game systems perform effectively.
+
+                        </div>
+
+                        <span class="module-type">
+                            Algorithms / Computing
+                        </span>
+
+                    </div>
+
+
+                    <div class="module">
+
+                        <div class="module-name">
+                            Game Prototyping
+                        </div>
+
+                        <div class="module-description">
+
+                            Designing, developing and improving
+                            early-stage playable game prototypes
+                            using scripting and an industry-standard
+                            engine.
+
+                        </div>
+
+                        <span class="module-type">
+                            Prototyping
+                        </span>
+
+                    </div>
+
+
+                    <div class="module">
+
+                        <div class="module-name">
+                            Mechanics Prototyping
+                        </div>
+
+                        <div class="module-description">
+
+                            Planning and implementing characters,
+                            enemies, game loops and core gameplay
+                            mechanics into playable prototypes.
+
+                        </div>
+
+                        <span class="module-type">
+                            Gameplay
+                        </span>
+
+                    </div>
+
+
+                    <div class="module">
+
+                        <div class="module-name">
+                            Introduction To Graphics Programming
+                        </div>
+
+                        <div class="module-description">
+
+                            Fundamentals of computer graphics and
+                            graphical programming techniques used
+                            within games.
+
+                        </div>
+
+                        <span class="module-type">
+                            C++ / Graphics
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =================================================
+                     YEAR 02
+                ================================================== -->
+
+                <div class="curriculum-year">
+
+                    <div class="curriculum-year-header">
+
+                        <h3>
+                            YEAR 02
+                        </h3>
+
+                        <span>
+                            ADVANCED
+                        </span>
+
+                    </div>
+
+
+                    <div class="module">
+
+                        <div class="module-name">
+                            C++ For Engines
+                        </div>
+
+                        <div class="module-description">
+
+                            Efficient systems inside a commercial
+                            engine structure using C++ and visual
+                            scripting, with an emphasis on systems
+                            designers can work with.
+
+                        </div>
+
+                        <span class="module-type">
+                            C++ / Engines
+                        </span>
+
+                    </div>
+
+
+                    <div class="module">
+
+                        <div class="module-name">
+                            Game Artificial Intelligence
+                        </div>
+
+                        <div class="module-description">
+
+                            Game AI concepts including research,
+                            steering behaviours, pathfinding such
+                            as A*, and decision-making systems.
+
+                        </div>
+
+                        <span class="module-type">
+                            AI / Algorithms
+                        </span>
+
+                    </div>
+
+
+                    <div class="module">
+
+                        <div class="module-name">
+                            Introduction To Mechanics Design
+                        </div>
+
+                        <div class="module-description">
+
+                            Designing systems and manipulating
+                            mechanics to improve game feel,
+                            responsiveness and the player experience.
+
+                        </div>
+
+                        <span class="module-type">
+                            Game Feel
+                        </span>
+
+                    </div>
+
+
+                    <div class="module">
+
+                        <div class="module-name">
+                            Advanced Mechanics Design
+                        </div>
+
+                        <div class="module-description">
+
+                            Designing more complex mechanics while
+                            considering how players interact with
+                            and understand gameplay systems.
+
+                        </div>
+
+                        <span class="module-type">
+                            Advanced Gameplay
+                        </span>
+
+                    </div>
+
+
+                    <div class="module">
+
+                        <div class="module-name">
+                            Junior Collaborative Games Development
+                        </div>
+
+                        <div class="module-description">
+
+                            Working as part of a simulated professional
+                            games studio to develop a vertical slice
+                            alongside students from other disciplines.
+
+                        </div>
+
+                        <span class="module-type">
+                            Team Development
+                        </span>
+
+                    </div>
+
+
+                    <div class="module">
+
+                        <div class="module-name">
+                            User Interface Design And Implementation
+                        </div>
+
+                        <div class="module-description">
+
+                            User experience principles, interface
+                            research, UI design and implementation
+                            inside a game engine.
+
+                        </div>
+
+                        <span class="module-type">
+                            UI / UX
+                        </span>
+
+                    </div>
+
+
+                    <div class="module">
+
+                        <div class="module-name">
+                            Experimental Gameplay
+                        </div>
+
+                        <div class="module-description">
+
+                            An optional area allowing exploration of
+                            experimental gameplay ideas and alternative
+                            approaches to interactive design.
+
+                        </div>
+
+                        <span class="module-type">
+                            Optional
+                        </span>
+
+                    </div>
+
+
+                    <div class="module">
+
+                        <div class="module-name">
+                            Game Audio
+                        </div>
+
+                        <div class="module-description">
+
+                            An optional area focused on audio within
+                            interactive game experiences.
+
+                        </div>
+
+                        <span class="module-type">
+                            Optional
+                        </span>
+
+                    </div>
+
+
+                    <div class="module">
+
+                        <div class="module-name">
+                            Tools Development
+                        </div>
+
+                        <div class="module-description">
+
+                            Creating systems and tools that improve
+                            development workflows, including areas
+                            such as procedural content and asset
+                            creation.
+
+                        </div>
+
+                        <span class="module-type">
+                            Optional
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =================================================
+                     YEAR 03
+                ================================================== -->
+
+                <div class="curriculum-year">
+
+                    <div class="curriculum-year-header">
+
+                        <h3>
+                            YEAR 03
+                        </h3>
+
+                        <span>
+                            PROFESSIONAL
+                        </span>
+
+                    </div>
+
+
+                    <div class="module">
+
+                        <div class="module-name">
+                            Games Development Project
+                        </div>
+
+                        <div class="module-description">
+
+                            A major individual development project
+                            allowing you to focus on your career
+                            aspirations and create a high-quality
+                            portfolio-ready outcome.
+
+                        </div>
+
+                        <span class="module-type">
+                            Major Project
+                        </span>
+
+                    </div>
+
+
+                    <div class="module">
+
+                        <div class="module-name">
+                            Low-Level Gameplay
+                        </div>
+
+                        <div class="module-description">
+
+                            Rebuilding a classic arcade game using
+                            modern practices and a low-level language,
+                            developing a deeper understanding of
+                            game systems and programming.
+
+                        </div>
+
+                        <span class="module-type">
+                            Low-Level Programming
+                        </span>
+
+                    </div>
+
+
+                    <div class="module">
+
+                        <div class="module-name">
+                            Multiplayer Level Design
+                        </div>
+
+                        <div class="module-description">
+
+                            Designing environments and levels around
+                            multiplayer gameplay and player interaction.
+
+                        </div>
+
+                        <span class="module-type">
+                            Multiplayer
+                        </span>
+
+                    </div>
+
+
+                    <div class="module">
+
+                        <div class="module-name">
+                            Senior Collaborative Games Development
+                        </div>
+
+                        <div class="module-description">
+
+                            Taking a senior role within a collaborative
+                            games development environment and working
+                            towards a larger professional-style project.
+
+                        </div>
+
+                        <span class="module-type">
+                            Studio Development
+                        </span>
+
+                    </div>
+
+
+                    <div class="module">
+
+                        <div class="module-name">
+                            Multiplayer Mechanics Programming
+                        </div>
+
+                        <div class="module-description">
+
+                            An optional advanced area focused on
+                            programming mechanics for multiplayer
+                            experiences.
+
+                        </div>
+
+                        <span class="module-type">
+                            Optional
+                        </span>
+
+                    </div>
+
+
+                    <div class="module">
+
+                        <div class="module-name">
+                            Prototyping For Technical Designers
+                        </div>
+
+                        <div class="module-description">
+
+                            An optional area combining technical
+                            implementation with design-focused
+                            prototyping and systems development.
+
+                        </div>
+
+                        <span class="module-type">
+                            Optional
+                        </span>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+            <!-- =====================================================
+                 SKILLS SUMMARY
+            ====================================================== -->
+
+            <div class="skills-summary">
+
+                <div class="skills-summary-item">
+
+                    <span>
+                        PROGRAMMING
+                    </span>
+
+                    <strong>
+                        C# / C++ / OOP / Algorithms
+                    </strong>
+
+                </div>
+
+
+                <div class="skills-summary-item">
+
+                    <span>
+                        ENGINES
+                    </span>
+
+                    <strong>
+                        Unity / Unreal Engine
+                    </strong>
+
+                </div>
+
+
+                <div class="skills-summary-item">
+
+                    <span>
+                        TECHNICAL
+                    </span>
+
+                    <strong>
+                        Graphics / AI / Tools / Low-Level Systems
+                    </strong>
+
+                </div>
+
+
+                <div class="skills-summary-item">
+
+                    <span>
+                        DESIGN
+                    </span>
+
+                    <strong>
+                        Mechanics / UI / Multiplayer / Prototyping
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="curriculum-note">
+
+                <strong style="color:#ffffff;">
+                    DEGREE SKILLS:
+                </strong>
+
+                Over the course of the degree, the focus progresses
+                from programming fundamentals and game prototyping
+                into C++, engine development, artificial intelligence,
+                advanced mechanics, collaborative studio development,
+                tools, UI, multiplayer systems, low-level gameplay
+                and a major portfolio project.
+
+                <br><br>
+
+                The module list is based on Staffordshire University
+                London's current published course information.
+                Module availability and content can change as the
+                university updates the course.
 
             </div>
 
@@ -2070,7 +2767,7 @@
                 <div>
 
                     <div class="section-label">
-                        03 // CAPABILITIES
+                        04 // CAPABILITIES
                     </div>
 
                     <h2 class="section-title">
@@ -2244,7 +2941,7 @@
                 <div>
 
                     <div class="section-label">
-                        04 // EDUCATION
+                        05 // EDUCATION
                     </div>
 
                     <h2 class="section-title">
@@ -2319,9 +3016,8 @@
                             Advanced mechanics, C++ for engines,
                             game AI, mechanics design, collaborative
                             development and user interface design,
-                            with opportunities to explore areas such
-                            as game audio, tools and experimental
-                            gameplay.
+                            with opportunities to explore game audio,
+                            tools and experimental gameplay.
 
                         </p>
 
